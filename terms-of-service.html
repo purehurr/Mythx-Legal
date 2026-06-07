@@ -7,27 +7,31 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Syne:wght@800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
 
     :root {
-      --bg-color: #0a0b10;
-      --card-bg: #12131a;
-      --accent-color: #5865F2;
-      --text-color: #f3f4f6;
-      --text-muted: #9ca3af;
-      --glow-color: rgba(88, 101, 242, 0.4);
-      --border-subtle: rgba(255, 255, 255, 0.05);
+      --accent:        #7c4ddd;
+      --accent-bright: #a78bfa;
+      --accent-glow:   rgba(124,77,221,0.38);
+      --silver:        #c4bcdc;
+      --silver-dim:    #8a82a8;
+      --bg:            #05020d;
+      --card-bg:       rgba(14,10,28,0.85);
+      --border:        rgba(124,77,221,0.22);
+      --border-hover:  rgba(167,139,250,0.55);
+      --text:          #ede8f8;
+      --muted:         #7d7499;
     }
 
     body {
       font-family: 'Rubik', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
       width: 100%;
@@ -39,23 +43,28 @@
       overflow-x: hidden;
     }
 
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+
+    /* Radial glow background */
     body::before {
       content: "";
-      position: absolute;
-      width: 80vw;
-      height: 80vw;
-      max-width: 700px;
-      max-height: 700px;
+      position: fixed;
+      width: 80vw; height: 80vw;
+      max-width: 700px; max-height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(88, 101, 242, 0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(124,77,221,0.08) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    /* ── Main Container Card ── */
     .dashboard-container {
       position: relative;
       z-index: 10;
@@ -63,23 +72,23 @@
       max-width: 1100px;
       height: 85vh;
       min-height: 620px;
-      max-height: 850px;
-      background: rgba(18, 19, 26, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
+      max-height: 880px;
+      background: rgba(14, 10, 28, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       display: flex;
       overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,77,221,0.08);
     }
 
-    /* ── Left Sidebar Panel ── */
+    /* ── Sidebar ── */
     .sidebar {
       width: 320px;
       flex-shrink: 0;
-      border-right: 1px solid var(--border-subtle);
-      background: rgba(10, 11, 16, 0.4);
+      border-right: 1px solid var(--border);
+      background: rgba(8,5,18,0.6);
       padding: 40px 30px;
       display: flex;
       flex-direction: column;
@@ -87,10 +96,7 @@
       position: relative;
     }
 
-    [dir="rtl"] .sidebar {
-      border-right: none;
-      border-left: 1px solid var(--border-subtle);
-    }
+    [dir="rtl"] .sidebar { border-right: none; border-left: 1px solid var(--border); }
 
     .sidebar-header-row {
       display: flex;
@@ -107,181 +113,183 @@
       gap: 8px;
       padding: 6px 14px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-color);
+      background: rgba(124,77,221,0.08);
+      color: var(--text);
       font-size: 12px;
       font-weight: 500;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       white-space: nowrap;
     }
+    .brand-block .badge i { color: var(--accent-bright); }
 
-    .brand-block .badge i { color: var(--accent-color); }
-    .brand-block h1 { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 6px; }
-    .brand-block h1 span { color: var(--accent-color); }
-    .brand-block .subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; }
-
-    /* ── Language Selector ── */
-    .lang-wrapper {
-      position: relative;
+    .brand-block h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--silver) 10%, var(--accent-bright) 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+      margin-top: 16px;
     }
+    .brand-block h1 span { -webkit-text-fill-color: var(--accent-bright); color: var(--accent-bright); }
+    .brand-block .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
 
+    /* Lang selector */
+    .lang-wrapper { position: relative; }
     .lang-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-color);
-      padding: 6px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'Rubik', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      transition: 0.2s ease;
-      user-select: none;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(124,77,221,0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px; border-radius: 8px;
+      cursor: pointer; font-family: 'Rubik', sans-serif;
+      font-size: 12px; font-weight: 500;
+      transition: 0.2s ease; user-select: none;
     }
-
     .lang-btn div { display: flex; align-items: center; gap: 6px; }
-    .lang-btn:hover, .lang-btn.open { border-color: var(--accent-color); background: rgba(88, 101, 242, 0.08); }
-    .lang-btn .arrow { font-size: 9px; color: var(--text-muted); transition: transform 0.2s; }
+    .lang-btn:hover, .lang-btn.open { border-color: var(--accent-bright); background: rgba(124,77,221,0.12); }
+    .lang-btn .arrow { font-size: 9px; color: var(--muted); transition: transform 0.2s; }
     .lang-btn.open .arrow { transform: rotate(180deg); }
 
     .lang-dropdown {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: calc(100% + 6px);
-      background: #14161f;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
-      transition: all 0.2s ease;
-      min-width: 110px;
-      z-index: 99;
+      display: flex; flex-direction: column;
+      position: absolute; top: calc(100% + 6px);
+      background: #0e0a1c;
+      border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0; transform: translateY(-6px);
+      pointer-events: none; transition: all 0.2s ease;
+      min-width: 110px; z-index: 99;
     }
-
     [dir="ltr"] .lang-dropdown { right: 0; left: auto; }
     [dir="rtl"] .lang-dropdown { left: 0; right: auto; }
-
     .lang-dropdown.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .lang-option { 
-      display: flex; 
-      align-items: center; 
-      gap: 10px; 
-      padding: 10px 14px; 
-      cursor: pointer; 
-      font-family: 'Rubik', sans-serif;
-      font-size: 13px; 
-      color: var(--text-muted); 
-      transition: 0.2s; 
+    .lang-option {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; cursor: pointer;
+      font-family: 'Rubik', sans-serif; font-size: 13px;
+      color: var(--muted); transition: 0.2s;
     }
-    .lang-option:hover { background: rgba(255, 255, 255, 0.03); color: var(--text-color); }
-    .lang-option.active { background: rgba(88, 101, 242, 0.15); color: #fff; font-weight: 500; }
+    .lang-option:hover { background: rgba(124,77,221,0.06); color: var(--text); }
+    .lang-option.active { background: rgba(124,77,221,0.15); color: #fff; font-weight: 500; }
 
     .nav-links { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
-    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; color: var(--text-muted); font-size: 14px; cursor: pointer; font-weight: 500; transition: 0.2s; }
-    .nav-item:hover { background: rgba(255,255,255,0.02); color: var(--accent-color); }
-    .nav-item i { width: 20px; text-align: center; }
-
-    /* ── Right Content Viewport ── */
-    .content-viewport {
-      flex: 1;
-      padding: 45px;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+    .nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px; border-radius: 8px;
+      color: var(--muted); font-size: 14px;
+      cursor: pointer; font-weight: 500; transition: 0.2s;
     }
+    .nav-item:hover { background: rgba(124,77,221,0.08); color: var(--accent-bright); }
+    .nav-item i { width: 20px; text-align: center; color: var(--accent); }
 
-    .content-viewport::-webkit-scrollbar { width: 5px; }
+    /* ── Content ── */
+    .content-viewport {
+      flex: 1; padding: 45px;
+      overflow-y: auto; scroll-behavior: smooth;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .content-viewport::-webkit-scrollbar { width: 4px; }
     .content-viewport::-webkit-scrollbar-track { background: transparent; }
-    .content-viewport::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 10px; }
-    .content-viewport::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    .content-viewport::-webkit-scrollbar-thumb { background: rgba(124,77,221,0.25); border-radius: 10px; }
+    .content-viewport::-webkit-scrollbar-thumb:hover { background: rgba(124,77,221,0.5); }
 
-    .intro-text { color: var(--text-muted); font-size: 15px; }
+    .intro-text { color: var(--muted); font-size: 14px; line-height: 1.7; }
 
     .section-card {
-      background-color: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-      padding: 26px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: rgba(124,77,221,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      position: relative; overflow: hidden;
     }
+    .section-card::before {
+      content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .section-card:hover { border-color: var(--border-hover); box-shadow: 0 8px 32px rgba(124,77,221,0.12); }
+    .section-card:hover::before { opacity: 0.4; }
 
-    .section-card:hover { 
-      border-color: rgba(88, 101, 242, 0.25); 
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    .section-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px; font-weight: 800; color: var(--silver);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
     }
-    
-    .section-card h2 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
-    .section-card h2 i { color: var(--accent-color); }
-    .section-card p, .section-card li { color: var(--text-muted); font-size: 14px; }
+    .section-card h2 i { color: var(--accent-bright); font-size: 15px; }
+    .section-card p, .section-card li { color: var(--muted); font-size: 14px; line-height: 1.7; }
     .section-card ul { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
     [dir="rtl"] .section-card ul { padding-left: 0; padding-right: 20px; }
-    .section-card li::marker { color: var(--accent-color); }
-    .section-card a { color: var(--accent-color); text-decoration: none; }
+    .section-card li::marker { color: var(--accent-bright); }
+    .section-card a { color: var(--accent-bright); text-decoration: none; }
     .section-card a:hover { text-decoration: underline; }
+    .section-card p + p { margin-top: 8px; }
 
-    /* ── Discord Button Engine ── */
-    .btn { 
-      display: inline-flex !important; 
-      align-items: center !important; 
-      justify-content: center !important;
-      gap: 10px !important; 
-      padding: 12px 28px !important; 
-      border-radius: 8px !important; 
-      font-weight: 700 !important; 
-      text-decoration: none !important; 
-      transition: 0.2s ease !important; 
-      cursor: pointer !important; 
-      font-size: 14px !important; 
-      margin-top: 14px !important; 
-      border: none !important; 
-      font-family: 'Rubik', sans-serif !important; 
-      white-space: nowrap !important;
-      min-height: 45px !important;
-      min-width: 180px !important;
-      height: auto !important;
-      width: max-content !important;
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(124,77,221,0.07);
+      border: 1px solid rgba(124,77,221,0.25);
+      border-radius: 10px; padding: 14px 16px;
+      margin-top: 14px;
+      font-size: 13px; color: var(--silver-dim);
     }
-    .btn-primary { background-color: var(--accent-color) !important; color: #ffffff !important; box-shadow: 0 4px 15px var(--glow-color) !important; }
-    .btn-primary:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5) !important; }
-    .btn i { display: inline-block !important; font-size: 16px !important; line-height: 1 !important; visibility: visible !important; opacity: 1 !important; color: #ffffff !important; }
+    .highlight-box strong { color: var(--accent-bright); font-weight: 600; }
 
-    /* Footer Styling */
-    .app-footer { font-size: 12px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; border-top: 1px solid var(--border-subtle); padding-top: 20px; }
-    .footer-dot { width: 6px; height: 6px; background: var(--accent-color); border-radius: 50%; box-shadow: 0 0 8px var(--accent-color); margin-top: 6px; flex-shrink: 0; }
+    /* Tag badges */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 20px;
+      background: rgba(124,77,221,0.1);
+      border: 1px solid rgba(124,77,221,0.25);
+      font-size: 12px; color: var(--accent-bright); font-weight: 500;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex !important; align-items: center !important;
+      justify-content: center !important; gap: 10px !important;
+      padding: 12px 28px !important; border-radius: 10px !important;
+      font-weight: 700 !important; text-decoration: none !important;
+      transition: 0.2s ease !important; cursor: pointer !important;
+      font-size: 14px !important; margin-top: 14px !important;
+      border: none !important; font-family: 'Rubik', sans-serif !important;
+      white-space: nowrap !important; min-height: 45px !important;
+      min-width: 180px !important; width: max-content !important;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #5e3dc8) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 20px var(--accent-glow) !important;
+    }
+    .btn-primary:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 28px rgba(124,77,221,0.55) !important; }
+    .btn i { display: inline-block !important; font-size: 16px !important; color: #ffffff !important; }
+
+    /* Footer */
+    .app-footer {
+      font-size: 12px; color: var(--muted);
+      display: flex; align-items: flex-start; gap: 8px;
+      border-top: 1px solid var(--border); padding-top: 20px;
+    }
+    .footer-dot {
+      width: 6px; height: 6px;
+      background: var(--accent-bright); border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-bright); margin-top: 5px; flex-shrink: 0;
+    }
     #footerText { line-height: 1.5; }
-    
-    /* Interactive Footer Link styling */
-    .footer-link { color: var(--text-color); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
-    .footer-link:hover { color: var(--accent-color); text-decoration: underline; }
+    .footer-link { color: var(--silver-dim); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .footer-link:hover { color: var(--accent-bright); text-decoration: underline; }
 
     @media (max-width: 900px) {
       body { padding: 16px; overflow-y: auto; }
-      .dashboard-container {
-        flex-direction: column;
-        height: auto;
-        max-height: none;
-        overflow: visible;
-        background: var(--card-bg);
-      }
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border-subtle);
-        padding: 30px 24px;
-      }
+      .dashboard-container { flex-direction: column; height: auto; max-height: none; overflow: visible; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
       [dir="rtl"] .sidebar { border-left: none; }
-      .sidebar-header-row { margin-bottom: 16px; }
       .nav-links { display: none; }
-      .content-viewport { padding: 30px 20px; overflow-y: visible; }
+      .content-viewport { padding: 28px 20px; overflow-y: visible; }
       .section-card { padding: 20px; }
     }
   </style>
@@ -289,12 +297,11 @@
 <body>
 
 <div class="dashboard-container">
-  
+
   <div class="sidebar">
     <div class="brand-block">
       <div class="sidebar-header-row">
         <div class="badge"><i class="fa-solid fa-bolt"></i> Lunar Team</div>
-        
         <div class="lang-wrapper">
           <button class="lang-btn" id="langBtn" onclick="toggleDropdown()">
             <div>
@@ -311,16 +318,19 @@
       </div>
 
       <h1 id="title">Terms Of Service<span>.</span></h1>
-      <p class="subtitle" id="subtitle">Last Updated: May 26, 2026</p>
+      <p class="subtitle" id="subtitle">Last Updated: June 7, 2026</p>
 
       <div class="nav-links">
         <div class="nav-item" onclick="scrollToCard('sec-1')"><i class="fa-solid fa-gavel"></i><span id="nav1">Usage Rules</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-2')"><i class="fa-solid fa-server"></i><span id="nav2">Availability</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-3')"><i class="fa-solid fa-ban"></i><span id="nav3">Limitations</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-4')"><i class="fa-solid fa-user-slash"></i><span id="nav4">Termination</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-5')"><i class="fa-solid fa-pen-to-square"></i><span id="nav5">Changes</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-6')"><i class="fa-solid fa-comments"></i><span id="nav6">Support</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-7')"><i class="fa-solid fa-scale-balanced"></i><span id="nav7">Legal</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-2')"><i class="fa-solid fa-coins"></i><span id="nav2">Economy System</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-3')"><i class="fa-solid fa-dice"></i><span id="nav3">Gambling</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-4')"><i class="fa-solid fa-crown"></i><span id="nav4">Membership</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-5')"><i class="fa-solid fa-gift"></i><span id="nav5">Giveaways</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-6')"><i class="fa-solid fa-server"></i><span id="nav6">Availability</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-7')"><i class="fa-solid fa-user-slash"></i><span id="nav7">Termination</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-8')"><i class="fa-solid fa-pen-to-square"></i><span id="nav8">Changes</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-9')"><i class="fa-solid fa-comments"></i><span id="nav9">Support</span></div>
+        <div class="nav-item" onclick="scrollToCard('sec-10')"><i class="fa-solid fa-scale-balanced"></i><span id="nav10">Legal</span></div>
       </div>
     </div>
 
@@ -332,53 +342,102 @@
 
   <div class="content-viewport" id="viewport">
     <p class="intro-text" id="intro">
-      By using Mythx, you agree to these Terms of Service. If you do not agree, you must stop using the bot immediately.
+      By using Mythx, you agree to these Terms of Service. If you do not agree, you must stop using the bot immediately. These terms cover all commands, features, and services provided by Mythx.
     </p>
 
     <div class="section-card" id="sec-1">
       <h2><i class="fa-solid fa-gavel"></i> <span id="h1">Usage Rules</span></h2>
       <ul id="list1">
-        <li>Do not abuse or exploit Mythx</li>
-        <li>Do not use the bot for illegal activities</li>
-        <li>Do not spam commands or overload systems</li>
-        <li>Follow Discord Terms</li>
+        <li>Do not abuse, exploit, or reverse-engineer Mythx or its commands</li>
+        <li>Do not use the bot for illegal activities, harassment, or hate speech</li>
+        <li>Do not spam commands, flood channels, or attempt to overload bot systems</li>
+        <li>Do not attempt to manipulate the economy system (e.g. self-robbing, farming exploits)</li>
+        <li>Do not use multiple accounts to gain unfair advantages in the economy or giveaways</li>
+        <li>Follow <a href="https://discord.com/terms" target="_blank">Discord's Terms of Service</a> and <a href="https://discord.com/guidelines" target="_blank">Community Guidelines</a> at all times</li>
       </ul>
     </div>
 
     <div class="section-card" id="sec-2">
-      <h2><i class="fa-solid fa-server"></i> <span id="h2">Availability</span></h2>
-      <p id="p1">Mythx is provided "as is" without guarantees.</p>
+      <h2><i class="fa-solid fa-coins"></i> <span id="h2">Economy System</span></h2>
+      <p id="p2a">Mythx features a virtual economy with coins that have no real-world monetary value. By using economy features, you acknowledge:</p>
+      <ul id="list2" style="margin-top:12px;">
+        <li>Coin balances held in your virtual wallet or bank have no real-world monetary value and cannot be exchanged for cash</li>
+        <li>Daily reward claims include a streak bonus system; streaks reset automatically if more than 48 hours pass between claims</li>
+        <li>Work rewards are randomized and subject to cooldown periods between uses</li>
+        <li>Attempting to steal coins from another user carries a fixed chance of failure, resulting in a penalty deducted from your own wallet</li>
+        <li>Coin transfers between users or between your wallet and bank are processed immediately and are not reversible</li>
+        <li>Lunar Team reserves the right to reset, adjust, or wipe economy data at any time without prior notice</li>
+      </ul>
     </div>
 
     <div class="section-card" id="sec-3">
-      <h2><i class="fa-solid fa-ban"></i> <span id="h3">Limitations</span></h2>
-      <p id="p2">Lunar Team is not responsible for any damage or data loss.</p>
+      <h2><i class="fa-solid fa-dice"></i> <span id="h3">Gambling Features</span></h2>
+      <p id="p3a">Mythx offers several gambling games that use virtual coins only. By using these features, you agree to the following terms:</p>
+      <ul id="list3" style="margin-top:12px;">
+        <li>A card game where you compete against the dealer to reach 21 without going over. You may draw additional cards or hold your hand each turn</li>
+        <li>A chance-based game where you wager coins on the outcome of a two-sided flip, winning or losing based on which side lands</li>
+        <li>A game where you roll virtual dice and win or lose based on the outcome relative to a target number or comparison</li>
+        <li>A spinning wheel game where you place coins on a color or number and win based on where the wheel stops</li>
+        <li>A game where you spin reels and win coins if matching symbols align across the outcome</li>
+      </ul>
+      <div class="highlight-box" id="hb3">
+        <strong>⚠ Important:</strong> All gambling features use virtual currency with no real-world value. No real money is involved. All outcomes are randomized. You may lose your in-game coins at any time. Lunar Team is not liable for any virtual coin losses.
+      </div>
     </div>
 
     <div class="section-card" id="sec-4">
-      <h2><i class="fa-solid fa-user-slash"></i> <span id="h4">Termination</span></h2>
-      <p id="p3">Mythx may restrict users who violate rules.</p>
+      <h2><i class="fa-solid fa-crown"></i> <span id="h4">Membership & Premium</span></h2>
+      <p id="p4a">Mythx offers optional paid Membership that grants in-game perks including economy bonuses, priority leaderboard listing, and unlimited emoji/sticker access in premium servers.</p>
+      <ul id="list4" style="margin-top:12px;">
+        <li>Membership is activated using a unique key obtained through our official channels</li>
+        <li>Memberships are non-refundable once activated</li>
+        <li>Membership perks apply only within the Mythx ecosystem and have no cash value</li>
+        <li>Server Premium is a separate tier from individual Membership and is granted and managed by server administrators</li>
+        <li>Abusing membership benefits may result in revocation without refund</li>
+        <li>Lunar Team reserves the right to modify, suspend, or discontinue membership benefits at any time</li>
+      </ul>
     </div>
 
     <div class="section-card" id="sec-5">
-      <h2><i class="fa-solid fa-pen-to-square"></i> <span id="h5">Changes</span></h2>
-      <p id="p4">Terms may be updated anytime.</p>
+      <h2><i class="fa-solid fa-gift"></i> <span id="h5">Giveaways</span></h2>
+      <p id="p5a">Server administrators may use Mythx to host giveaways. By participating in or creating giveaways, you agree:</p>
+      <ul id="list5" style="margin-top:12px;">
+        <li>Giveaway prizes are determined and provided by the hosting server, not by Mythx or Lunar Team</li>
+        <li>Multiple entries, bot-assisted entry farming, or manipulation of giveaway outcomes is strictly prohibited</li>
+        <li>Mythx giveaway results are algorithmically random and final</li>
+        <li>Lunar Team is not responsible for unclaimed, undelivered, or fraudulent prizes</li>
+        <li>Only server administrators with sufficient permissions may create or manage giveaways</li>
+      </ul>
     </div>
 
     <div class="section-card" id="sec-6">
-      <h2><i class="fa-solid fa-comments"></i> <span id="h6">Support</span></h2>
-      <p id="supportLabel">Join our support server for help or data requests:</p>
-      
+      <h2><i class="fa-solid fa-server"></i> <span id="h6">Availability</span></h2>
+      <p id="p6">Mythx is provided "as is" without any guarantees of uptime, accuracy, or suitability for a specific purpose. We strive for high availability but do not guarantee uninterrupted service. Downtime, data loss, or temporary feature unavailability may occur at any time for maintenance or unforeseen reasons.</p>
+    </div>
+
+    <div class="section-card" id="sec-7">
+      <h2><i class="fa-solid fa-user-slash"></i> <span id="h7">Termination</span></h2>
+      <p id="p7">Lunar Team reserves the right to restrict, ban, or blacklist any user or server from using Mythx at any time, with or without notice, for violations of these Terms. This includes but is not limited to: economy abuse, exploitation of bot systems, harassment of other users, or violation of Discord's Terms of Service. Restricted users may contact support to appeal.</p>
+    </div>
+
+    <div class="section-card" id="sec-8">
+      <h2><i class="fa-solid fa-pen-to-square"></i> <span id="h8">Changes to Terms</span></h2>
+      <p id="p8">These Terms may be updated at any time. Continued use of Mythx following any changes constitutes acceptance of the revised Terms. We recommend checking this page periodically. Major changes will be announced in our support server.</p>
+    </div>
+
+    <div class="section-card" id="sec-9">
+      <h2><i class="fa-solid fa-comments"></i> <span id="h9">Support</span></h2>
+      <p id="supportLabel">Join our support server for questions, appeals, or assistance:</p>
       <a class="btn btn-primary" id="discordBtn" href="https://discord.gg/sfdRGj7Gqr" target="_blank">
         <i class="fa-brands fa-discord"></i> <span id="btnTextSpan">Join Discord Server</span>
       </a>
     </div>
 
-    <div class="section-card" id="sec-7">
-      <h2><i class="fa-solid fa-scale-balanced"></i> <span id="h7">Legal Notice</span></h2>
-      <p id="legal1">Mythx and Lunar Team are protected under copyright laws.</p>
-      <p id="legal2" style="margin-top: 8px;">Copying, cloning, or impersonating is strictly prohibited.</p>
-      <p id="legal3" style="margin-top: 8px;">Legal action may be taken against violators.</p>
+    <div class="section-card" id="sec-10">
+      <h2><i class="fa-solid fa-scale-balanced"></i> <span id="h10">Legal Notice</span></h2>
+      <p id="legal1">Mythx and Lunar Team are protected under applicable copyright and intellectual property laws.</p>
+      <p id="legal2">Unauthorized copying, cloning, reselling, or impersonation of this bot or its branding is strictly prohibited.</p>
+      <p id="legal3">Violations may result in legal action. Mythx is not affiliated with Discord Inc.</p>
     </div>
   </div>
 
@@ -389,49 +448,129 @@
     en: {
       dir: "ltr",
       currentLangLabel: "English",
-      subtitle: "Last Updated: May 26, 2026",
-      intro: "By using Mythx, you agree to these Terms of Service. If you do not agree, you must stop using the bot immediately.",
-      nav1: "Usage Rules", nav2: "Availability", nav3: "Limitations", nav4: "Termination", nav5: "Changes", nav6: "Support", nav7: "Legal",
-      h1: "Usage Rules", h2: "Availability", h3: "Limitations", h4: "Termination", h5: "Changes", h6: "Support", h7: "Legal Notice",
+      subtitle: "Last Updated: June 7, 2026",
+      intro: "By using Mythx, you agree to these Terms of Service. If you do not agree, you must stop using the bot immediately. These terms cover all commands, features, and services provided by Mythx.",
+      nav1:"Usage Rules", nav2:"Economy System", nav3:"Gambling", nav4:"Membership", nav5:"Giveaways",
+      nav6:"Availability", nav7:"Termination", nav8:"Changes", nav9:"Support", nav10:"Legal",
+      h1:"Usage Rules", h2:"Economy System", h3:"Gambling Features", h4:"Membership & Premium",
+      h5:"Giveaways", h6:"Availability", h7:"Termination", h8:"Changes to Terms",
+      h9:"Support", h10:"Legal Notice",
       list1: [
-        "Do not abuse or exploit Mythx",
-        "Do not use the bot for illegal activities",
-        "Do not spam commands or overload systems",
-        `Follow <a href="https://discord.com/terms" target="_blank">Discord Terms</a>`
+        "Do not abuse, exploit, or reverse-engineer Mythx or its commands",
+        "Do not use the bot for illegal activities, harassment, or hate speech",
+        "Do not spam commands, flood channels, or attempt to overload bot systems",
+        "Do not attempt to manipulate the economy system (e.g. self-robbing, farming exploits)",
+        "Do not use multiple accounts to gain unfair advantages in the economy or giveaways",
+        `Follow <a href="https://discord.com/terms" target="_blank">Discord's Terms of Service</a> and <a href="https://discord.com/guidelines" target="_blank">Community Guidelines</a> at all times`
       ],
-      p1: "Mythx is provided \"as is\" without guarantees.",
-      p2: "Lunar Team is not responsible for any damage or data loss.",
-      p3: "Mythx may restrict users who violate rules.",
-      p4: "Terms may be updated anytime.",
-      supportLabel: "Join our support server for help or queries:",
+      p2a: "Mythx features a virtual economy with coins that have no real-world monetary value. By using economy features, you acknowledge:",
+      list2: [
+        "Coin balances held in your virtual wallet or bank have no real-world monetary value and cannot be exchanged for cash",
+        "Daily reward claims include a streak bonus system; streaks reset automatically if more than 48 hours pass between claims",
+        "Work rewards are randomized and subject to cooldown periods between uses",
+        "Attempting to steal coins from another user carries a fixed chance of failure, resulting in a penalty deducted from your own wallet",
+        "Coin transfers between users or between your wallet and bank are processed immediately and are not reversible",
+        "Lunar Team reserves the right to reset, adjust, or wipe economy data at any time without prior notice"
+      ],
+      p3a: "Mythx offers several gambling games that use virtual coins only. By using these features, you agree to the following terms:",
+      list3: [
+        "A card game where you compete against the dealer to reach 21 without going over. You may draw additional cards or hold your hand each turn",
+        "A chance-based game where you wager coins on the outcome of a two-sided flip, winning or losing based on which side lands",
+        "A game where you roll virtual dice and win or lose based on the outcome relative to a target number or comparison",
+        "A spinning wheel game where you place coins on a color or number and win based on where the wheel stops",
+        "A game where you spin reels and win coins if matching symbols align across the outcome"
+      ],
+      hb3: "<strong>⚠ Important:</strong> All gambling features use virtual currency with no real-world value. No real money is involved. All outcomes are randomized. You may lose your in-game coins at any time. Lunar Team is not liable for any virtual coin losses.",
+      p4a: "Mythx offers optional paid Membership that grants in-game perks including economy bonuses, priority leaderboard listing, and unlimited emoji/sticker access in premium servers.",
+      list4: [
+        "Membership is activated using a unique key obtained through our official channels",
+        "Memberships are non-refundable once activated",
+        "Membership perks apply only within the Mythx ecosystem and have no cash value",
+        "Server Premium is a separate tier from individual Membership and is granted and managed by server administrators",
+        "Abusing membership benefits may result in revocation without refund",
+        "Lunar Team reserves the right to modify, suspend, or discontinue membership benefits at any time"
+      ],
+      p5a: "Server administrators may use Mythx to host giveaways. By participating in or creating giveaways, you agree:",
+      list5: [
+        "Giveaway prizes are determined and provided by the hosting server, not by Mythx or Lunar Team",
+        "Multiple entries, bot-assisted entry farming, or manipulation of giveaway outcomes is strictly prohibited",
+        "Mythx giveaway results are algorithmically random and final",
+        "Lunar Team is not responsible for unclaimed, undelivered, or fraudulent prizes",
+        "Only server administrators with sufficient permissions may create or manage giveaways"
+      ],
+      p6: `Mythx is provided "as is" without any guarantees of uptime, accuracy, or suitability for a specific purpose. We strive for high availability but do not guarantee uninterrupted service. Downtime, data loss, or temporary feature unavailability may occur at any time.`,
+      p7: "Lunar Team reserves the right to restrict, ban, or blacklist any user or server from using Mythx at any time, with or without notice, for violations of these Terms. Restricted users may contact support to appeal.",
+      p8: "These Terms may be updated at any time. Continued use of Mythx following any changes constitutes acceptance of the revised Terms. Major changes will be announced in our support server.",
+      supportLabel: "Join our support server for questions, appeals, or assistance:",
       discordButtonText: "Join Discord Server",
-      legal1: "Mythx and Lunar Team are protected under copyright laws.",
-      legal2: "Copying, cloning, or impersonating is strictly prohibited.",
-      legal3: "Legal action may be taken against violators.",
+      legal1: "Mythx and Lunar Team are protected under applicable copyright and intellectual property laws.",
+      legal2: "Unauthorized copying, cloning, reselling, or impersonation of this bot or its branding is strictly prohibited.",
+      legal3: "Violations may result in legal action. Mythx is not affiliated with Discord Inc.",
       footer: `© 2026 Mythx Bot. Developed and owned by <a class="footer-link" href="https://lunar-team.vercel.app/" target="_blank">Lunar Team</a>.`
     },
     ar: {
       dir: "rtl",
       currentLangLabel: "العربية",
-      subtitle: "آخر تحديث: 26 مايو 2026",
-      intro: "باستخدامك لـ Mythx، فإنك توافق على شروط الخدمة هذه. إذا كنت لا توافق عليها، يجب عليك التوقف عن استخدام البوت على الفور.",
-      nav1: "شروط الاستخدام", nav2: "التوافر والعمل", nav3: "حدود المسؤولية", nav4: "إنهاء الخدمة", nav5: "التعديلات", nav6: "الدعم الفني", nav7: "إشعار قانوني",
-      h1: "قواعد الاستخدام الأساسية", h2: "توافر الخدمة", h3: "حدود المسؤولية والضمانات", h4: "إنهاء وإيقاف الخدمة", h5: "تغيير الشروط", h6: "الدعم والمساعدة", h7: "إشعار حماية وحقوق",
+      subtitle: "آخر تحديث: 7 يونيو 2026",
+      intro: "باستخدامك لـ Mythx، فإنك توافق على شروط الخدمة هذه. إذا كنت لا توافق عليها، يجب عليك التوقف عن استخدام البوت على الفور. تغطي هذه الشروط جميع الأوامر والميزات والخدمات المقدمة من Mythx.",
+      nav1:"قواعد الاستخدام", nav2:"نظام الاقتصاد", nav3:"المقامرة", nav4:"العضوية",
+      nav5:"الهدايا", nav6:"التوافر", nav7:"إنهاء الخدمة", nav8:"التعديلات",
+      nav9:"الدعم", nav10:"إشعار قانوني",
+      h1:"قواعد الاستخدام الأساسية", h2:"نظام الاقتصاد الافتراضي", h3:"ميزات المقامرة",
+      h4:"العضوية والبريميوم", h5:"نظام الهدايا والسحوبات", h6:"توافر الخدمة",
+      h7:"إنهاء وإيقاف الخدمة", h8:"تغيير الشروط والأحكام",
+      h9:"الدعم الفني", h10:"إشعار حماية وحقوق",
       list1: [
-        "يُمنع منعاً باتاً إساءة استخدام البوت أو استغلال الثغرات",
-        "عدم استخدام البوت في أي أنشطة أو أعمال غير قانونية",
-        "عدم إرسال الأوامر بشكل تكراري (سبام) أو إثقال أنظمة التشغيل",
-        `الالتزام الكامل بـ <a href="https://discord.com/terms" target="_blank">شروط استخدام ديسكورد</a>`
+        "يُمنع منعاً باتاً إساءة استخدام البوت أو استغلال الثغرات أو محاولة فك شفرته",
+        "عدم استخدام البوت في أي أنشطة غير قانونية أو تحرش أو خطاب كراهية",
+        "عدم إرسال الأوامر بشكل تكراري أو إغراق القنوات أو إثقال أنظمة البوت",
+        "عدم محاولة التلاعب بنظام الاقتصاد مثل السرقة الذاتية أو الاستغلال",
+        "عدم استخدام حسابات متعددة للحصول على مزايا غير عادلة في الاقتصاد أو الهدايا",
+        `الالتزام الكامل بـ <a href="https://discord.com/terms" target="_blank">شروط استخدام ديسكورد</a> و<a href="https://discord.com/guidelines" target="_blank">إرشادات المجتمع</a> في جميع الأوقات`
       ],
-      p1: "يتم تقديم خدمات Mythx \"كما هي\" دون أي ضمانات تشغيلية صريحة أو ضمنية.",
-      p2: "فريق Lunar Team غير مسؤول عن أي أضرار مباشرة أو خسارة في البيانات تنتج عن الاستخدام.",
-      p3: "يمتلك إدارة Mythx كامل الحق في تقييد وحظر المستخدمين الذين يخالفون هذه القواعد.",
-      p4: "قد يتم تعديل وتحديث شروط الخدمة هذه في أي وقت دون إشعار مسبق.",
-      supportLabel: "انضم إلى سيرفر المساعدة الفنية الرسمي لتقديم الاستفسارات:",
+      p2a: "يتميز Mythx بنظام اقتصاد افتراضي يستخدم عملة رقمية ليس لها أي قيمة مادية حقيقية. باستخدام أوامر الاقتصاد، فإنك تقر بما يلي:",
+      list2: [
+        "أرصدة العملات في محفظتك الافتراضية أو بنكك ليس لها أي قيمة مادية حقيقية ولا يمكن استبدالها بنقود",
+        "المطالبات اليومية تتضمن نظام مكافآت السلسلة؛ تُعاد ضبط السلسلة تلقائياً إذا مرّ أكثر من 48 ساعة بين المطالبات",
+        "مكافآت العمل عشوائية وتخضع لفترات انتظار بين كل استخدام وآخر",
+        "محاولة سرقة عملات مستخدم آخر تنطوي على احتمال ثابت للفشل، مما يؤدي إلى خصم غرامة من محفظتك",
+        "تحويلات العملات بين المستخدمين أو بين محفظتك وبنكك تتم فوراً وغير قابلة للتراجع",
+        "يحتفظ فريق Lunar Team بالحق في إعادة ضبط أو تعديل أو مسح بيانات الاقتصاد في أي وقت"
+      ],
+      p3a: "يقدم Mythx عدة ألعاب مقامرة تستخدم العملة الافتراضية فقط. باستخدام هذه الميزات، فإنك توافق على الشروط التالية:",
+      list3: [
+        "لعبة ورق تتنافس فيها مع الموزع للوصول إلى 21 دون تجاوزها، ويمكنك سحب ورقة إضافية أو الإبقاء على يدك في كل دور",
+        "لعبة تعتمد على الحظ تراهن فيها بعملاتك على نتيجة قلب عملة ثنائية الجانب، تربح أو تخسر بناءً على الجانب الذي يظهر",
+        "لعبة تقوم فيها بلف نرد افتراضي وتربح أو تخسر بناءً على النتيجة مقارنةً برقم مستهدف",
+        "لعبة عجلة دوارة تضع فيها عملاتك على لون أو رقم وتربح بناءً على مكان توقف العجلة",
+        "لعبة تدور فيها بكرات وتربح عملات إذا توافقت الرموز المتطابقة عبر النتيجة"
+      ],
+      hb3: "<strong>⚠ تنبيه مهم:</strong> جميع ميزات المقامرة تستخدم عملة افتراضية ليس لها قيمة حقيقية. لا يوجد أي مال حقيقي. جميع النتائج عشوائية. قد تخسر عملتك الافتراضية في أي وقت. فريق Lunar Team غير مسؤول عن أي خسائر في العملة الافتراضية.",
+      p4a: "يقدم Mythx عضوية مدفوعة اختيارية تمنح مزايا داخل اللعبة تشمل مكافآت اقتصادية وأولوية في المتصدرين وصلاحيات غير محدودة لنسخ الإيموجي والملصقات في السيرفرات المميزة.",
+      list4: [
+        "يتم تفعيل العضوية باستخدام مفتاح فريد يتم الحصول عليه عبر قنواتنا الرسمية",
+        "العضويات غير قابلة للاسترداد بمجرد تفعيلها",
+        "مزايا العضوية تنطبق فقط داخل نظام Mythx وليس لها قيمة نقدية",
+        "بريميوم السيرفر مستوى منفصل عن العضوية الفردية ويمنحه ويديره مشرفو السيرفر",
+        "إساءة استخدام مزايا العضوية قد يؤدي إلى سحبها دون استرداد",
+        "يحتفظ فريق Lunar Team بالحق في تعديل أو تعليق أو إيقاف مزايا العضوية في أي وقت"
+      ],
+      p5a: "يمكن لمشرفي السيرفرات استخدام Mythx لاستضافة الهدايا والسحوبات. بمشاركتك في الهدايا أو إنشائها، فإنك توافق على:",
+      list5: [
+        "جوائز الهدايا يحددها ويقدمها السيرفر المضيف، وليس Mythx أو فريق Lunar Team",
+        "التسجيل المتعدد أو استغلال البوت لزيادة الإدخالات أو التلاعب بنتائج الهدايا محظور تماماً",
+        "نتائج هدايا Mythx عشوائية خوارزمياً ونهائية",
+        "فريق Lunar Team غير مسؤول عن الجوائز غير المطالب بها أو غير المسلّمة أو الاحتيالية",
+        "لا يحق لأحد إنشاء الهدايا أو إدارتها إلا مشرفو السيرفر الذين يمتلكون الصلاحيات الكافية"
+      ],
+      p6: `يتم تقديم خدمات Mythx "كما هي" دون أي ضمانات للتشغيل المستمر أو الدقة أو الملاءمة لغرض محدد. نسعى لتحقيق توافر عالٍ لكننا لا نضمن خدمة غير منقطعة. قد تحدث توقفات أو فقدان بيانات في أي وقت.`,
+      p7: "يحتفظ فريق Lunar Team بالحق في تقييد أو حظر أو إدراج أي مستخدم أو سيرفر في القائمة السوداء من استخدام Mythx في أي وقت، مع إشعار أو بدونه، لانتهاك هذه الشروط. يمكن للمستخدمين المقيدين التواصل مع الدعم للاستئناف.",
+      p8: "قد يتم تعديل وتحديث هذه الشروط في أي وقت. استمرارك في استخدام Mythx بعد أي تغييرات يُعدّ قبولاً للشروط المعدّلة. التغييرات الكبرى سيتم الإعلان عنها في سيرفر الدعم.",
+      supportLabel: "انضم إلى سيرفر الدعم للاستفسارات أو الاستئنافات أو المساعدة:",
       discordButtonText: "انضم إلى سيرفر ديسكورد",
-      legal1: "ميثكس وفريق Lunar Team محميان بالكامل بموجب قوانين حماية حقوق الطبع والنشر.",
-      legal2: "يُمنع منعاً باتاً نسخ ميزات هذا البوت، أو استنساخه، أو انتحال هويته وعلامته التجارية.",
-      legal3: "أي انتهاك أو تزوير سيعرض صاحبه للملاحقة والإجراءات القانونية الصارمة.",
+      legal1: "ميثكس وفريق Lunar Team محميان بالكامل بموجب قوانين حماية حقوق الطبع والنشر والملكية الفكرية.",
+      legal2: "يُمنع منعاً باتاً نسخ البوت أو استنساخه أو إعادة بيعه أو انتحال هويته وعلامته التجارية.",
+      legal3: "أي انتهاك سيعرض صاحبه للملاحقة القانونية. Mythx غير تابع لشركة Discord Inc.",
       footer: `© ٢٠٢٦ بوت ميثكس. تم تطويره وامتلاكه بواسطة <a class="footer-link" href="https://lunar-team.vercel.app/" target="_blank">Lunar Team</a>.`
     }
   };
@@ -439,44 +578,43 @@
   function setLanguage(lang) {
     const t = translations[lang];
     if (!t) return;
-
     localStorage.setItem("lang", lang);
     document.documentElement.lang = lang;
     document.body.style.direction = t.dir;
+    document.documentElement.dir = t.dir;
 
-    const safeUpdateText = (id, text) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = text;
-    };
+    const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
 
-    const safeUpdateHTML = (id, html) => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = html;
-    };
+    setText("currentLangLabel", t.currentLangLabel);
+    setHTML("title", lang === 'en' ? 'Terms Of Service<span>.</span>' : 'شروط الخدمة<span>.</span>');
+    setText("subtitle", t.subtitle);
+    setText("intro", t.intro);
 
-    safeUpdateText("currentLangLabel", t.currentLangLabel);
-    safeUpdateHTML("title", lang === 'en' ? 'Terms Of Service<span>.</span>' : 'شروط الخدمة<span>.</span>');
-    safeUpdateText("subtitle", t.subtitle);
-    safeUpdateText("intro", t.intro);
-
-    for (let i = 1; i <= 7; i++) {
-      safeUpdateText(`nav${i}`, t[`nav${i}`]);
-      safeUpdateText(`h${i}`, t[`h${i}`]);
+    for (let i = 1; i <= 10; i++) {
+      setText(`nav${i}`, t[`nav${i}`]);
+      setText(`h${i}`, t[`h${i}`]);
     }
 
-    safeUpdateHTML("list1", t.list1.map(i => `<li>${i}</li>`).join(""));
-
-    safeUpdateText("p1", t.p1);
-    safeUpdateText("p2", t.p2);
-    safeUpdateText("p3", t.p3);
-    safeUpdateText("p4", t.p4);
-    safeUpdateText("supportLabel", t.supportLabel);
-    safeUpdateText("btnTextSpan", t.discordButtonText);
-    
-    safeUpdateText("legal1", t.legal1);
-    safeUpdateText("legal2", t.legal2);
-    safeUpdateText("legal3", t.legal3);
-    safeUpdateHTML("footerText", t.footer);
+    setHTML("list1", t.list1.map(i => `<li>${i}</li>`).join(""));
+    setText("p2a", t.p2a);
+    setHTML("list2", t.list2.map(i => `<li>${i}</li>`).join(""));
+    setText("p3a", t.p3a);
+    setHTML("list3", t.list3.map(i => `<li>${i}</li>`).join(""));
+    setHTML("hb3", t.hb3);
+    setText("p4a", t.p4a);
+    setHTML("list4", t.list4.map(i => `<li>${i}</li>`).join(""));
+    setText("p5a", t.p5a);
+    setHTML("list5", t.list5.map(i => `<li>${i}</li>`).join(""));
+    setText("p6", t.p6);
+    setText("p7", t.p7);
+    setText("p8", t.p8);
+    setText("supportLabel", t.supportLabel);
+    setText("btnTextSpan", t.discordButtonText);
+    setText("legal1", t.legal1);
+    setText("legal2", t.legal2);
+    setText("legal3", t.legal3);
+    setHTML("footerText", t.footer);
 
     document.querySelectorAll(".lang-option").forEach(opt => {
       opt.classList.toggle("active", opt.dataset.lang === lang);
@@ -487,19 +625,13 @@
   function toggleDropdown() {
     const btn = document.getElementById("langBtn");
     const menu = document.getElementById("langDropdown");
-    if (btn && menu) {
-      btn.classList.toggle("open");
-      menu.classList.toggle("open");
-    }
+    if (btn && menu) { btn.classList.toggle("open"); menu.classList.toggle("open"); }
   }
 
   function closeDropdown() {
     const btn = document.getElementById("langBtn");
     const menu = document.getElementById("langDropdown");
-    if (btn && menu) {
-      btn.classList.remove("open");
-      menu.classList.remove("open");
-    }
+    if (btn && menu) { btn.classList.remove("open"); menu.classList.remove("open"); }
   }
 
   document.addEventListener("click", (e) => {
