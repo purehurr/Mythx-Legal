@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Syne:wght@800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
@@ -113,8 +113,8 @@
     .brand-block .badge i { color: var(--accent-bright); }
 
     .brand-block h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 26px; font-weight: 900; letter-spacing: 1px;
+      font-family: 'Rubik', sans-serif;
+      font-size: 24px; font-weight: 800; letter-spacing: 0.5px;
       background: linear-gradient(135deg, var(--silver) 10%, var(--accent-bright) 60%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       margin-bottom: 6px; margin-top: 16px;
@@ -195,10 +195,12 @@
     .section-card:hover::before { opacity: 0.4; }
 
     .section-card h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 17px; font-weight: 800; color: var(--silver);
+      font-family: 'Rubik', sans-serif;
+      font-size: 15px; font-weight: 700; color: var(--silver);
+      letter-spacing: 0.3px; text-transform: uppercase;
       margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
     }
+    [dir="rtl"] .section-card h2 { letter-spacing: 0; text-transform: none; }
     .section-card h2 i { color: var(--accent-bright); font-size: 15px; }
     .section-card p, .section-card li { color: var(--muted); font-size: 14px; line-height: 1.7; }
     .section-card ul { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
@@ -270,6 +272,140 @@
       .content-viewport { padding: 28px 20px; overflow-y: visible; }
       .section-card { padding: 20px; }
       .data-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Rubik Arabic support ── */
+    :lang(ar), [dir="rtl"] {
+      font-family: 'Rubik', sans-serif;
+      word-spacing: 1px;
+    }
+
+    /* ── Sidebar decorative line ── */
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      top: 20%; bottom: 20%;
+      right: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--accent-bright), transparent);
+      opacity: 0.15;
+    }
+    [dir="rtl"] .sidebar::after { right: auto; left: 0; }
+
+    /* ── Brand title improvements ── */
+    .brand-block h1 {
+      line-height: 1.15;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Nav items — active indicator ── */
+    .nav-item {
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      border-radius: 0 8px 8px 0;
+    }
+    [dir="rtl"] .nav-item {
+      border-left: none;
+      border-right: 2px solid transparent;
+      padding-left: 14px;
+      padding-right: 12px;
+      border-radius: 8px 0 0 8px;
+    }
+    .nav-item:hover {
+      border-left-color: var(--accent-bright);
+      background: rgba(124,77,221,0.08);
+      color: var(--accent-bright);
+    }
+    [dir="rtl"] .nav-item:hover { border-right-color: var(--accent-bright); }
+
+    /* ── Intro text improvement ── */
+    .intro-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--silver-dim);
+      padding: 18px 22px;
+      background: rgba(124,77,221,0.04);
+      border: 1px solid rgba(124,77,221,0.12);
+      border-radius: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    [dir="rtl"] .intro-text {
+      border-left: 1px solid rgba(124,77,221,0.12);
+      border-right: 3px solid var(--accent);
+    }
+
+    /* ── Section card improvements ── */
+    .section-card {
+      padding: 28px 30px;
+    }
+    .section-card h2 i {
+      width: 30px; height: 30px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(124,77,221,0.12);
+      border-radius: 7px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .section-card p, .section-card li {
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+    .section-card ul {
+      gap: 10px;
+      margin-top: 2px;
+    }
+    .section-card li {
+      padding-left: 4px;
+    }
+    [dir="rtl"] .section-card li { padding-left: 0; padding-right: 4px; }
+
+    /* ── Highlight box improvements ── */
+    .highlight-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.7;
+    }
+
+    /* ── Data grid improvements ── */
+    .data-item {
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+
+    /* ── Footer badge ── */
+    .badge {
+      letter-spacing: 0.3px;
+      font-weight: 600;
+    }
+
+    /* ── Scrollbar ── */
+    .content-viewport::-webkit-scrollbar { width: 3px; }
+
+    /* ── Subtle card entry animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .section-card {
+      animation: fadeUp 0.35s ease both;
+    }
+    .section-card:nth-child(1)  { animation-delay: 0.05s; }
+    .section-card:nth-child(2)  { animation-delay: 0.10s; }
+    .section-card:nth-child(3)  { animation-delay: 0.15s; }
+    .section-card:nth-child(4)  { animation-delay: 0.20s; }
+    .section-card:nth-child(5)  { animation-delay: 0.25s; }
+    .section-card:nth-child(6)  { animation-delay: 0.30s; }
+    .section-card:nth-child(7)  { animation-delay: 0.35s; }
+    .section-card:nth-child(8)  { animation-delay: 0.38s; }
+    .section-card:nth-child(9)  { animation-delay: 0.40s; }
+    .section-card:nth-child(10) { animation-delay: 0.42s; }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .intro-text { padding: 14px 16px; }
+      .section-card { padding: 20px 18px; }
+      .sidebar::after { display: none; }
     }
   </style>
 </head>
@@ -359,9 +495,9 @@
 
     <div class="section-card" id="sec-3">
       <h2><i class="fa-solid fa-database"></i> <span id="h3">Data Storage & Security</span></h2>
-      <p id="p3a">All data is stored locally in JSON files on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.</p>
+      <p id="p3a">All data is stored on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.</p>
       <p id="p3b" style="margin-top:8px;">Economy data, membership records, and leaderboard data are retained for the duration of the bot's operation. Temporary security logs are purged periodically. AFK data is automatically cleared when the user sends a message.</p>
-      <p id="p3c" style="margin-top:8px;">We do not use third-party databases or cloud storage services that would expose your data to additional parties.</p>
+
     </div>
 
     <div class="section-card" id="sec-4">
@@ -433,9 +569,9 @@
         "Generate internal logs for debugging and security purposes",
         "Respond to AFK mentions and notify users accordingly"
       ],
-      p3a: "All data is stored locally in JSON files on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.",
+      p3a: "All data is stored on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.",
       p3b: "Economy data, membership records, and leaderboard data are retained for the duration of the bot's operation. Temporary security logs are purged periodically. AFK data is automatically cleared when the user sends a message.",
-      p3c: "We do not use third-party databases or cloud storage services that would expose your data to additional parties.",
+      p3c: "",
       p4: `We do not sell, rent, or share your data with third parties for commercial purposes. Your data may only be disclosed if required by applicable law or in response to a valid legal request. Lunar Team will not voluntarily provide user data to any external entity outside of legal obligations.`,
       p5: `Mythx operates exclusively on Discord's platform. By using Mythx, you also agree to Discord's <a href="https://discord.com/terms" target="_blank">Terms of Service</a> and <a href="https://discord.com/privacy" target="_blank">Privacy Policy</a>. Mythx does not integrate with any analytics, advertising, or third-party tracking services.`,
       p6: "Mythx is intended for users aged 13 and above, in accordance with Discord's minimum age requirement. We do not knowingly collect data from users under 13 years of age. If you believe a minor's data has been collected, please contact us immediately.",
@@ -476,9 +612,9 @@
         "إنشاء سجلات داخلية لأغراض التصحيح والأمان",
         "الاستجابة لذكر الأعضاء الذين في وضع AFK وإعلام المستخدمين"
       ],
-      p3a: "يتم تخزين جميع البيانات محلياً في ملفات JSON على البنية التحتية الآمنة لخوادمنا. نطبق تدابير تقنية معقولة لحماية البيانات المخزنة من الوصول غير المصرح به.",
+      p3a: "يتم تخزين جميع البيانات على البنية التحتية الآمنة لخوادمنا. نطبق تدابير تقنية معقولة لحماية البيانات المخزنة من الوصول غير المصرح به.",
       p3b: "يتم الاحتفاظ ببيانات الاقتصاد وسجلات العضوية والمتصدرين طوال فترة تشغيل البوت. يتم حذف سجلات الأمان المؤقتة بشكل دوري. يتم مسح بيانات AFK تلقائياً عند إرسال المستخدم لرسالة.",
-      p3c: "لا نستخدم قواعد بيانات خارجية أو خدمات تخزين سحابي قد تعرض بياناتك لأطراف إضافية.",
+      p3c: "",
       p4: `لا نبيع بياناتك أو نؤجرها أو نشاركها مع أطراف ثالثة لأغراض تجارية. لا يمكن الكشف عن بياناتك إلا إذا طُلب ذلك بموجب القانون المعمول به أو استجابةً لطلب قانوني صالح.`,
       p5: `يعمل Mythx حصرياً على منصة ديسكورد. باستخدامك لـ Mythx، فإنك توافق أيضاً على <a href="https://discord.com/terms" target="_blank">شروط خدمة ديسكورد</a> و<a href="https://discord.com/privacy" target="_blank">سياسة الخصوصية الخاصة به</a>. لا يتكامل Mythx مع أي خدمات تحليلات أو إعلانات أو تتبع خارجية.`,
       p6: "صُمّم Mythx للمستخدمين الذين تبلغ أعمارهم 13 عاماً فأكثر، وفقاً لمتطلبات الحد الأدنى للعمر في ديسكورد. لا نجمع بيانات المستخدمين دون سن 13 عن علم. إذا كنت تعتقد أنه تم جمع بيانات قاصر، يرجى التواصل معنا فوراً.",
