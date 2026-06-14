@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mythx Bot - Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for the Mythx Discord bot, explaining what data is collected, how it is used and stored, and how to request data removal.">
+  <meta name="theme-color" content="#05020d">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%237c4ddd'/%3E%3Cstop%20offset='1'%20stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='url(%23g)'/%3E%3Ctext%20x='50'%20y='69'%20font-family='Arial,Helvetica,sans-serif'%20font-size='56'%20font-weight='900'%20fill='%23fff'%20text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -91,7 +94,12 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      overflow-y: auto;
+      scrollbar-width: thin;
     }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(124,77,221,0.25); border-radius: 10px; }
 
     [dir="rtl"] .sidebar { border-right: none; border-left: 1px solid var(--border); }
 
@@ -407,6 +415,28 @@
       .section-card { padding: 20px 18px; }
       .sidebar::after { display: none; }
     }
+
+    /* ── Touch devices — avoid sticky hover states after tap ── */
+    @media (hover: none), (pointer: coarse) {
+      .section-card:hover, .btn-primary:hover, .nav-item:hover, .lang-btn:hover {
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      .section-card:hover { border-color: var(--border); }
+      .section-card:hover::before { opacity: 0; }
+    }
+
+    /* ── Shorter viewports (e.g. iPad landscape) — tighten the sidebar so the nav fits ── */
+    @media (min-width: 901px) and (max-height: 760px) {
+      .dashboard-container { height: 92vh; }
+      .sidebar { padding: 26px 24px; }
+      .sidebar-header-row { margin-bottom: 16px; }
+      .brand-block h1 { margin-top: 12px; margin-bottom: 4px; font-size: 21px; }
+      .brand-block .subtitle { margin-bottom: 14px; }
+      .nav-links { gap: 2px; margin-top: 6px; }
+      .nav-item { padding: 7px 14px; font-size: 13px; }
+      .app-footer { padding-top: 12px; font-size: 11px; }
+    }
   </style>
 </head>
 <body>
@@ -433,7 +463,7 @@
       </div>
 
       <h1 id="title">Privacy Policy<span>.</span></h1>
-      <p class="subtitle" id="subtitle">Last Updated: June 7, 2026</p>
+      <p class="subtitle" id="subtitle">Last Updated: June 14, 2026</p>
 
       <div class="nav-links">
         <div class="nav-item" onclick="scrollToCard('sec-1')"><i class="fa-solid fa-list-check"></i><span id="nav1">Data We Collect</span></div>
@@ -543,7 +573,7 @@
     en: {
       dir: "ltr",
       currentLangLabel: "English",
-      subtitle: "Last Updated: June 7, 2026",
+      subtitle: "Last Updated: June 14, 2026",
       intro: "Mythx is a Discord bot developed by Lunar Team. This Privacy Policy explains what data we collect when you use Mythx, how it is used, how it is stored, and your rights regarding that data.",
       nav1:"Data We Collect", nav2:"How We Use It", nav3:"Data Storage", nav4:"Data Sharing",
       nav5:"Third-Party", nav6:"Minors", nav7:"Data Removal", nav8:"Support", nav9:"Legal",
@@ -586,7 +616,7 @@
     ar: {
       dir: "rtl",
       currentLangLabel: "العربية",
-      subtitle: "آخر تحديث: 7 يونيو 2026",
+      subtitle: "آخر تحديث: 14 يونيو 2026",
       intro: "ميثكس هو بوت ديسكورد طوّرته فريق Lunar Team. توضّح سياسة الخصوصية هذه البيانات التي نجمعها عند استخدامك لـ Mythx، وكيفية استخدامها وتخزينها وحقوقك المتعلقة بها.",
       nav1:"البيانات التي نجمعها", nav2:"كيف نستخدمها", nav3:"التخزين والأمان", nav4:"مشاركة البيانات",
       nav5:"أطراف خارجية", nav6:"القاصرون", nav7:"حذف البيانات", nav8:"الدعم", nav9:"إشعار قانوني",
