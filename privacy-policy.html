@@ -1,735 +1,295 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mythx Bot - Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for the Mythx Discord bot, explaining what data is collected, how it is used and stored, and how to request data removal.">
-  <meta name="theme-color" content="#05020d">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%237c4ddd'/%3E%3Cstop%20offset='1'%20stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='url(%23g)'/%3E%3Ctext%20x='50'%20y='69'%20font-family='Arial,Helvetica,sans-serif'%20font-size='56'%20font-weight='900'%20fill='%23fff'%20text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mythx — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for the Mythx Discord bot: what data we collect, how it's used, how it's stored, and your rights.">
+<meta name="theme-color" content="#07080f">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%237B5CF0'/%3E%3Cstop%20offset='1'%20stop-color='%234EAAFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='url(%23g)'/%3E%3Ctext%20x='50'%20y='69'%20font-family='Arial,Helvetica,sans-serif'%20font-size='56'%20font-weight='900'%20fill='%23fff'%20text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; }
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    :root {
-      --accent:        #7c4ddd;
-      --accent-bright: #a78bfa;
-      --accent-glow:   rgba(124,77,221,0.38);
-      --silver:        #c4bcdc;
-      --silver-dim:    #8a82a8;
-      --bg:            #05020d;
-      --card-bg:       rgba(14,10,28,0.85);
-      --border:        rgba(124,77,221,0.22);
-      --border-hover:  rgba(167,139,250,0.55);
-      --text:          #ede8f8;
-      --muted:         #7d7499;
-    }
-
-    body {
-      font-family: 'Rubik', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 1; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.3;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      width: 80vw; height: 80vw;
-      max-width: 700px; max-height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,77,221,0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .dashboard-container {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 1100px;
-      height: 85vh;
-      min-height: 620px;
-      max-height: 880px;
-      background: rgba(14, 10, 28, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      display: flex;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,77,221,0.08);
-    }
-
-    .sidebar {
-      width: 320px;
-      flex-shrink: 0;
-      border-right: 1px solid var(--border);
-      background: rgba(8,5,18,0.6);
-      padding: 40px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow-y: auto;
-      scrollbar-width: thin;
-    }
-    .sidebar::-webkit-scrollbar { width: 3px; }
-    .sidebar::-webkit-scrollbar-track { background: transparent; }
-    .sidebar::-webkit-scrollbar-thumb { background: rgba(124,77,221,0.25); border-radius: 10px; }
-
-    [dir="rtl"] .sidebar { border-right: none; border-left: 1px solid var(--border); }
-
-    .sidebar-header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-      width: 100%;
-    }
-
-    .brand-block .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px; border-radius: 20px;
-      background: rgba(124,77,221,0.08);
-      color: var(--text); font-size: 12px; font-weight: 500;
-      border: 1px solid var(--border); white-space: nowrap;
-    }
-    .brand-block .badge i { color: var(--accent-bright); }
-
-    .brand-block h1 {
-      font-family: 'Rubik', sans-serif;
-      font-size: 24px; font-weight: 800; letter-spacing: 0.5px;
-      background: linear-gradient(135deg, var(--silver) 10%, var(--accent-bright) 60%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      margin-bottom: 6px; margin-top: 16px;
-    }
-    .brand-block h1 span { -webkit-text-fill-color: var(--accent-bright); color: var(--accent-bright); }
-    .brand-block .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
-
-    .lang-wrapper { position: relative; }
-    .lang-btn {
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(124,77,221,0.06); border: 1px solid var(--border);
-      color: var(--text); padding: 6px 12px; border-radius: 8px;
-      cursor: pointer; font-family: 'Rubik', sans-serif;
-      font-size: 12px; font-weight: 500; transition: 0.2s ease; user-select: none;
-    }
-    .lang-btn div { display: flex; align-items: center; gap: 6px; }
-    .lang-btn:hover, .lang-btn.open { border-color: var(--accent-bright); background: rgba(124,77,221,0.12); }
-    .lang-btn .arrow { font-size: 9px; color: var(--muted); transition: transform 0.2s; }
-    .lang-btn.open .arrow { transform: rotate(180deg); }
-
-    .lang-dropdown {
-      display: flex; flex-direction: column;
-      position: absolute; top: calc(100% + 6px);
-      background: #0e0a1c; border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      opacity: 0; transform: translateY(-6px);
-      pointer-events: none; transition: all 0.2s ease;
-      min-width: 110px; z-index: 99;
-    }
-    [dir="ltr"] .lang-dropdown { right: 0; left: auto; }
-    [dir="rtl"] .lang-dropdown { left: 0; right: auto; }
-    .lang-dropdown.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .lang-option {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px; cursor: pointer;
-      font-family: 'Rubik', sans-serif; font-size: 13px;
-      color: var(--muted); transition: 0.2s;
-    }
-    .lang-option:hover { background: rgba(124,77,221,0.06); color: var(--text); }
-    .lang-option.active { background: rgba(124,77,221,0.15); color: #fff; font-weight: 500; }
-
-    .nav-links { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
-    .nav-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 14px; border-radius: 8px;
-      color: var(--muted); font-size: 14px;
-      cursor: pointer; font-weight: 500; transition: 0.2s;
-    }
-    .nav-item:hover { background: rgba(124,77,221,0.08); color: var(--accent-bright); }
-    .nav-item i { width: 20px; text-align: center; color: var(--accent); }
-
-    .content-viewport {
-      flex: 1; padding: 45px;
-      overflow-y: auto; scroll-behavior: smooth;
-      display: flex; flex-direction: column; gap: 24px;
-    }
-    .content-viewport::-webkit-scrollbar { width: 4px; }
-    .content-viewport::-webkit-scrollbar-track { background: transparent; }
-    .content-viewport::-webkit-scrollbar-thumb { background: rgba(124,77,221,0.25); border-radius: 10px; }
-    .content-viewport::-webkit-scrollbar-thumb:hover { background: rgba(124,77,221,0.5); }
-
-    .intro-text { color: var(--muted); font-size: 14px; line-height: 1.7; }
-
-    .section-card {
-      background: rgba(124,77,221,0.04);
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 26px;
-      transition: border-color 0.25s, box-shadow 0.25s;
-      position: relative; overflow: hidden;
-    }
-    .section-card::before {
-      content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .section-card:hover { border-color: var(--border-hover); box-shadow: 0 8px 32px rgba(124,77,221,0.12); }
-    .section-card:hover::before { opacity: 0.4; }
-
-    .section-card h2 {
-      font-family: 'Rubik', sans-serif;
-      font-size: 15px; font-weight: 700; color: var(--silver);
-      letter-spacing: 0.3px; text-transform: uppercase;
-      margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
-    }
-    [dir="rtl"] .section-card h2 { letter-spacing: 0; text-transform: none; }
-    .section-card h2 i { color: var(--accent-bright); font-size: 15px; }
-    .section-card p, .section-card li { color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .section-card ul { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
-    [dir="rtl"] .section-card ul { padding-left: 0; padding-right: 20px; }
-    .section-card li::marker { color: var(--accent-bright); }
-    .section-card a { color: var(--accent-bright); text-decoration: none; }
-    .section-card a:hover { text-decoration: underline; }
-    .section-card p + p { margin-top: 8px; }
-
-    .highlight-box {
-      background: rgba(124,77,221,0.07);
-      border: 1px solid rgba(124,77,221,0.25);
-      border-radius: 10px; padding: 14px 16px;
-      margin-top: 14px; font-size: 13px; color: var(--silver-dim);
-    }
-    .highlight-box strong { color: var(--accent-bright); font-weight: 600; }
-
-    .data-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 10px; margin-top: 14px;
-    }
-    .data-item {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(124,77,221,0.06);
-      border: 1px solid rgba(124,77,221,0.15);
-      border-radius: 8px; padding: 10px 14px;
-      font-size: 13px; color: var(--silver-dim);
-    }
-    .data-item i { color: var(--accent-bright); width: 16px; text-align: center; flex-shrink: 0; }
-
-    .btn {
-      display: inline-flex !important; align-items: center !important;
-      justify-content: center !important; gap: 10px !important;
-      padding: 12px 28px !important; border-radius: 10px !important;
-      font-weight: 700 !important; text-decoration: none !important;
-      transition: 0.2s ease !important; cursor: pointer !important;
-      font-size: 14px !important; margin-top: 14px !important;
-      border: none !important; font-family: 'Rubik', sans-serif !important;
-      white-space: nowrap !important; min-height: 45px !important;
-      min-width: 180px !important; width: max-content !important;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #5e3dc8) !important;
-      color: #ffffff !important; box-shadow: 0 4px 20px var(--accent-glow) !important;
-    }
-    .btn-primary:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 28px rgba(124,77,221,0.55) !important; }
-    .btn i { display: inline-block !important; font-size: 16px !important; color: #ffffff !important; }
-
-    .app-footer {
-      font-size: 12px; color: var(--muted);
-      display: flex; align-items: flex-start; gap: 8px;
-      border-top: 1px solid var(--border); padding-top: 20px;
-    }
-    .footer-dot {
-      width: 6px; height: 6px;
-      background: var(--accent-bright); border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-bright); margin-top: 5px; flex-shrink: 0;
-    }
-    #footerText { line-height: 1.5; }
-    .footer-link { color: var(--silver-dim); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-    .footer-link:hover { color: var(--accent-bright); text-decoration: underline; }
-
-    @media (max-width: 900px) {
-      body { padding: 16px; overflow-y: auto; }
-      .dashboard-container { flex-direction: column; height: auto; max-height: none; overflow: visible; }
-      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
-      [dir="rtl"] .sidebar { border-left: none; }
-      .nav-links { display: none; }
-      .content-viewport { padding: 28px 20px; overflow-y: visible; }
-      .section-card { padding: 20px; }
-      .data-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Rubik Arabic support ── */
-    :lang(ar), [dir="rtl"] {
-      font-family: 'Rubik', sans-serif;
-      word-spacing: 1px;
-    }
-
-    /* ── Sidebar decorative line ── */
-    .sidebar::after {
-      content: '';
-      position: absolute;
-      top: 20%; bottom: 20%;
-      right: 0; width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--accent-bright), transparent);
-      opacity: 0.15;
-    }
-    [dir="rtl"] .sidebar::after { right: auto; left: 0; }
-
-    /* ── Brand title improvements ── */
-    .brand-block h1 {
-      line-height: 1.15;
-      margin-top: 18px;
-      margin-bottom: 8px;
-    }
-
-    /* ── Nav items — active indicator ── */
-    .nav-item {
-      border-left: 2px solid transparent;
-      padding-left: 12px;
-      border-radius: 0 8px 8px 0;
-    }
-    [dir="rtl"] .nav-item {
-      border-left: none;
-      border-right: 2px solid transparent;
-      padding-left: 14px;
-      padding-right: 12px;
-      border-radius: 8px 0 0 8px;
-    }
-    .nav-item:hover {
-      border-left-color: var(--accent-bright);
-      background: rgba(124,77,221,0.08);
-      color: var(--accent-bright);
-    }
-    [dir="rtl"] .nav-item:hover { border-right-color: var(--accent-bright); }
-
-    /* ── Intro text improvement ── */
-    .intro-text {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--silver-dim);
-      padding: 18px 22px;
-      background: rgba(124,77,221,0.04);
-      border: 1px solid rgba(124,77,221,0.12);
-      border-radius: 12px;
-      border-left: 3px solid var(--accent);
-    }
-    [dir="rtl"] .intro-text {
-      border-left: 1px solid rgba(124,77,221,0.12);
-      border-right: 3px solid var(--accent);
-    }
-
-    /* ── Section card improvements ── */
-    .section-card {
-      padding: 28px 30px;
-    }
-    .section-card h2 i {
-      width: 30px; height: 30px;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: rgba(124,77,221,0.12);
-      border-radius: 7px;
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-    .section-card p, .section-card li {
-      font-size: 13.5px;
-      line-height: 1.75;
-    }
-    .section-card ul {
-      gap: 10px;
-      margin-top: 2px;
-    }
-    .section-card li {
-      padding-left: 4px;
-    }
-    [dir="rtl"] .section-card li { padding-left: 0; padding-right: 4px; }
-
-    /* ── Highlight box improvements ── */
-    .highlight-box {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.7;
-    }
-
-    /* ── Data grid improvements ── */
-    .data-item {
-      font-size: 12.5px;
-      font-weight: 500;
-    }
-
-    /* ── Footer badge ── */
-    .badge {
-      letter-spacing: 0.3px;
-      font-weight: 600;
-    }
-
-    /* ── Scrollbar ── */
-    .content-viewport::-webkit-scrollbar { width: 3px; }
-
-    /* ── Subtle card entry animation ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .section-card {
-      animation: fadeUp 0.35s ease both;
-    }
-    .section-card:nth-child(1)  { animation-delay: 0.05s; }
-    .section-card:nth-child(2)  { animation-delay: 0.10s; }
-    .section-card:nth-child(3)  { animation-delay: 0.15s; }
-    .section-card:nth-child(4)  { animation-delay: 0.20s; }
-    .section-card:nth-child(5)  { animation-delay: 0.25s; }
-    .section-card:nth-child(6)  { animation-delay: 0.30s; }
-    .section-card:nth-child(7)  { animation-delay: 0.35s; }
-    .section-card:nth-child(8)  { animation-delay: 0.38s; }
-    .section-card:nth-child(9)  { animation-delay: 0.40s; }
-    .section-card:nth-child(10) { animation-delay: 0.42s; }
-
-    /* ── Mobile ── */
-    @media (max-width: 900px) {
-      .intro-text { padding: 14px 16px; }
-      .section-card { padding: 20px 18px; }
-      .sidebar::after { display: none; }
-    }
-
-    /* ── Touch devices — avoid sticky hover states after tap ── */
-    @media (hover: none), (pointer: coarse) {
-      .section-card:hover, .btn-primary:hover, .nav-item:hover, .lang-btn:hover {
-        transform: none !important;
-        box-shadow: none !important;
-      }
-      .section-card:hover { border-color: var(--border); }
-      .section-card:hover::before { opacity: 0; }
-    }
-
-    /* ── Shorter viewports (e.g. iPad landscape) — tighten the sidebar so the nav fits ── */
-    @media (min-width: 901px) and (max-height: 760px) {
-      .dashboard-container { height: 92vh; }
-      .sidebar { padding: 26px 24px; }
-      .sidebar-header-row { margin-bottom: 16px; }
-      .brand-block h1 { margin-top: 12px; margin-bottom: 4px; font-size: 21px; }
-      .brand-block .subtitle { margin-bottom: 14px; }
-      .nav-links { gap: 2px; margin-top: 6px; }
-      .nav-item { padding: 7px 14px; font-size: 13px; }
-      .app-footer { padding-top: 12px; font-size: 11px; }
-    }
-  </style>
+<link rel="stylesheet" href="css/legal.css">
 </head>
 <body>
 
-<div class="dashboard-container">
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="bg-gradient" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="grain" aria-hidden="true"></div>
 
-  <div class="sidebar">
-    <div class="brand-block">
-      <div class="sidebar-header-row">
-        <div class="badge"><i class="fa-solid fa-bolt"></i> Lunar Team</div>
+<header role="banner">
+    <a href="https://mythxdb.vercel.app" class="logo" aria-label="Mythx Home">
+        <div class="logo-mark">M</div>
+        <span class="brand-text">Myth<span class="mythx">x</span></span>
+    </a>
+    <div class="header-actions">
         <div class="lang-wrapper">
-          <button class="lang-btn" id="langBtn" onclick="toggleDropdown()">
-            <div>
-              <span id="currentFlag"><i class="fa-solid fa-language"></i></span>
-              <span id="currentLangLabel">English</span>
+            <button class="lang-btn" id="langBtn" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+                <span class="lb-inner">
+                    <i class="fa-solid fa-language" aria-hidden="true"></i>
+                    <span id="currentLangLabel">English</span>
+                </span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown" role="menu">
+                <div class="lang-option active" data-lang="en" onclick="setLanguage('en')" role="menuitem">English</div>
+                <div class="lang-option" data-lang="ar" onclick="setLanguage('ar')" role="menuitem">العربية</div>
             </div>
-            <span class="arrow">▼</span>
-          </button>
-          <div class="lang-dropdown" id="langDropdown">
-            <div class="lang-option active" data-lang="en" onclick="setLanguage('en')">English</div>
-            <div class="lang-option" data-lang="ar" onclick="setLanguage('ar')">العربية</div>
-          </div>
         </div>
-      </div>
+        <a href="https://purehurr.github.io/Mythx/" class="btn-back"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span id="backLabel">Back to Site</span></a>
+    </div>
+</header>
 
-      <h1 id="title">Privacy Policy<span>.</span></h1>
-      <p class="subtitle" id="subtitle">Last Updated: June 14, 2026</p>
-
-      <div class="nav-links">
-        <div class="nav-item" onclick="scrollToCard('sec-1')"><i class="fa-solid fa-list-check"></i><span id="nav1">Data We Collect</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-2')"><i class="fa-solid fa-sliders"></i><span id="nav2">How We Use It</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-3')"><i class="fa-solid fa-database"></i><span id="nav3">Data Storage</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-4')"><i class="fa-solid fa-shield-halved"></i><span id="nav4">Data Sharing</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-5')"><i class="fa-solid fa-link"></i><span id="nav5">Third-Party</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-6')"><i class="fa-solid fa-child"></i><span id="nav6">Minors</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-7')"><i class="fa-solid fa-trash-can"></i><span id="nav7">Data Removal</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-8')"><i class="fa-solid fa-comments"></i><span id="nav8">Support</span></div>
-        <div class="nav-item" onclick="scrollToCard('sec-9')"><i class="fa-solid fa-scale-balanced"></i><span id="nav9">Legal</span></div>
-      </div>
+<main id="main">
+    <div class="legal-hero">
+        <div class="section-label" data-reveal><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Legal</div>
+        <h1 id="title" data-reveal style="--d:1">Privacy Policy<span class="dot">.</span></h1>
+        <p class="legal-subtitle" id="subtitle" data-reveal style="--d:2">Last Updated: June 14, 2026</p>
+        <p class="intro-text" id="intro" data-reveal style="--d:3">Mythx is a Discord bot developed by Lunar Team. This Privacy Policy explains what data we collect when you use Mythx, how it is used, how it is stored, and your rights regarding that data.</p>
     </div>
 
-    <div class="app-footer">
-      <div class="footer-dot"></div>
-      <span id="footerText">© 2026 Mythx Bot. Developed and owned by <a class="footer-link" href="https://lunar-team.vercel.app/" target="_blank">Lunar Team</a>.</span>
+    <nav class="legal-toc" id="legalToc" aria-label="Table of contents">
+        <a class="toc-pill" data-target="sec-1" onclick="scrollToCard('sec-1')"><i class="fa-solid fa-list-check"></i><span id="nav1">Data We Collect</span></a>
+        <a class="toc-pill" data-target="sec-2" onclick="scrollToCard('sec-2')"><i class="fa-solid fa-sliders"></i><span id="nav2">How We Use It</span></a>
+        <a class="toc-pill" data-target="sec-3" onclick="scrollToCard('sec-3')"><i class="fa-solid fa-database"></i><span id="nav3">Data Storage</span></a>
+        <a class="toc-pill" data-target="sec-4" onclick="scrollToCard('sec-4')"><i class="fa-solid fa-shield-halved"></i><span id="nav4">Data Sharing</span></a>
+        <a class="toc-pill" data-target="sec-5" onclick="scrollToCard('sec-5')"><i class="fa-solid fa-link"></i><span id="nav5">Third-Party</span></a>
+        <a class="toc-pill" data-target="sec-6" onclick="scrollToCard('sec-6')"><i class="fa-solid fa-child"></i><span id="nav6">Minors</span></a>
+        <a class="toc-pill" data-target="sec-7" onclick="scrollToCard('sec-7')"><i class="fa-solid fa-trash-can"></i><span id="nav7">Data Removal</span></a>
+        <a class="toc-pill" data-target="sec-8" onclick="scrollToCard('sec-8')"><i class="fa-solid fa-comments"></i><span id="nav8">Support</span></a>
+        <a class="toc-pill" data-target="sec-9" onclick="scrollToCard('sec-9')"><i class="fa-solid fa-scale-balanced"></i><span id="nav9">Legal</span></a>
+    </nav>
+
+    <div class="legal-sections">
+        <article class="legal-card" id="sec-1" data-reveal>
+            <h2><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span id="h1">Data We Collect</span></h2>
+            <p id="p1a">Mythx collects the minimum data necessary to provide its features. The following data is stored:</p>
+            <div class="data-grid" id="datagrid1">
+                <div class="data-item"><i class="fa-solid fa-user"></i> Discord User IDs</div>
+                <div class="data-item"><i class="fa-solid fa-server"></i> Discord Server IDs</div>
+                <div class="data-item"><i class="fa-solid fa-hashtag"></i> Discord Channel IDs</div>
+                <div class="data-item"><i class="fa-solid fa-face-smile"></i> Emoji &amp; sticker data</div>
+                <div class="data-item"><i class="fa-solid fa-coins"></i> Economy data (coins, bank, streaks)</div>
+                <div class="data-item"><i class="fa-solid fa-clock-rotate-left"></i> AFK status &amp; reason</div>
+                <div class="data-item"><i class="fa-solid fa-star"></i> Ratings given and received</div>
+                <div class="data-item"><i class="fa-solid fa-trophy"></i> Leaderboard statistics</div>
+                <div class="data-item"><i class="fa-solid fa-key"></i> Membership activation status</div>
+                <div class="data-item"><i class="fa-solid fa-shield"></i> Temporary security logs</div>
+            </div>
+            <div class="highlight-box note" id="hb1"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span><strong>Note:</strong> We do not collect message content, passwords, email addresses, or any personal information beyond what Discord provides through its public API.</span></div>
+        </article>
+
+        <article class="legal-card" id="sec-2" data-reveal>
+            <h2><i class="fa-solid fa-sliders" aria-hidden="true"></i> <span id="h2">How We Use Information</span></h2>
+            <ul id="list2">
+                <li>Power economy features: balance, daily rewards, work, robbing, gambling, leaderboards</li>
+                <li>Manage AFK status and automatic nickname handling across servers</li>
+                <li>Run and resolve giveaways fairly and transparently</li>
+                <li>Validate and manage Membership and Server Premium subscriptions</li>
+                <li>Display user profile information via <strong style="color:var(--text)">/user</strong> and <strong style="color:var(--text)">/rate</strong></li>
+                <li>Enforce rate limits and prevent abuse of commands</li>
+                <li>Generate internal logs for debugging and security purposes</li>
+                <li>Respond to AFK mentions and notify users accordingly</li>
+            </ul>
+        </article>
+
+        <article class="legal-card" id="sec-3" data-reveal>
+            <h2><i class="fa-solid fa-database" aria-hidden="true"></i> <span id="h3">Data Storage &amp; Security</span></h2>
+            <p id="p3a">All data is stored on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.</p>
+            <p id="p3b" style="margin-top:8px;">Economy data, membership records, and leaderboard data are retained for the duration of the bot's operation. Temporary security logs are purged periodically. AFK data is automatically cleared when the user sends a message.</p>
+        </article>
+
+        <article class="legal-card" id="sec-4" data-reveal>
+            <h2><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> <span id="h4">Data Sharing</span></h2>
+            <p id="p4">We do not sell, rent, or share your data with third parties for commercial purposes. Your data may only be disclosed if required by applicable law or in response to a valid legal request. Lunar Team will not voluntarily provide user data to any external entity outside of legal obligations.</p>
+        </article>
+
+        <article class="legal-card" id="sec-5" data-reveal>
+            <h2><i class="fa-solid fa-link" aria-hidden="true"></i> <span id="h5">Third-Party Services</span></h2>
+            <p id="p5">Mythx operates exclusively on Discord's platform. By using Mythx, you also agree to Discord's <a href="https://discord.com/terms" target="_blank" rel="noopener">Terms of Service</a> and <a href="https://discord.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. Mythx does not integrate with any analytics, advertising, or third-party tracking services. No data is sent to external APIs beyond Discord's own infrastructure.</p>
+        </article>
+
+        <article class="legal-card" id="sec-6" data-reveal>
+            <h2><i class="fa-solid fa-child" aria-hidden="true"></i> <span id="h6">Minors</span></h2>
+            <p id="p6">Mythx is intended for users aged 13 and above, in accordance with Discord's minimum age requirement. We do not knowingly collect data from users under 13 years of age. If you believe a minor's data has been collected, please contact us immediately through our support server.</p>
+        </article>
+
+        <article class="legal-card" id="sec-7" data-reveal>
+            <h2><i class="fa-solid fa-trash-can" aria-hidden="true"></i> <span id="h7">Data Removal</span></h2>
+            <p id="p7">You may request deletion of all data associated with your Discord User ID at any time. To submit a data removal request, join our support server and contact the team. We will process your request within a reasonable timeframe. Note that some data (such as leaderboard entries) may be retained in anonymized form.</p>
+        </article>
+
+        <article class="legal-card" id="sec-8" data-reveal>
+            <h2><i class="fa-solid fa-comments" aria-hidden="true"></i> <span id="h8">Support</span></h2>
+            <p id="supportLabel">For data requests, privacy concerns, or general help, join our support server:</p>
+            <a class="btn-discord" id="discordBtn" href="https://discord.gg/sfdRGj7Gqr" target="_blank" rel="noopener">
+                <i class="fa-brands fa-discord" aria-hidden="true"></i> <span id="btnTextSpan">Join Discord Server</span>
+            </a>
+        </article>
+
+        <article class="legal-card" id="sec-9" data-reveal>
+            <h2><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> <span id="h9">Legal Notice</span></h2>
+            <p id="legal1">Mythx and Lunar Team are protected under applicable copyright and intellectual property laws.</p>
+            <p id="legal2">Unauthorized copying, cloning, or impersonation of this bot or its branding is strictly prohibited.</p>
+            <p id="legal3">Violations may result in legal action. Mythx is not affiliated with Discord Inc.</p>
+        </article>
     </div>
-  </div>
+</main>
 
-  <div class="content-viewport" id="viewport">
-    <p class="intro-text" id="intro">
-      Mythx is a Discord bot developed by Lunar Team. This Privacy Policy explains what data we collect when you use Mythx, how it is used, how it is stored, and your rights regarding that data.
-    </p>
+<footer class="legal-footer" role="contentinfo">
+    <div class="footer-dot" aria-hidden="true"></div>
+    <span id="footerText">© 2025 Mythx Bot. Developed and owned by <a href="https://lunar-team.vercel.app/" target="_blank" rel="noopener">Lunar Team</a>.</span>
+</footer>
 
-    <div class="section-card" id="sec-1">
-      <h2><i class="fa-solid fa-list-check"></i> <span id="h1">Data We Collect</span></h2>
-      <p id="p1a">Mythx collects the minimum data necessary to provide its features. The following data is stored:</p>
-      <div class="data-grid" id="datagrid1">
-        <div class="data-item"><i class="fa-solid fa-user"></i> Discord User IDs</div>
-        <div class="data-item"><i class="fa-solid fa-server"></i> Discord Server IDs</div>
-        <div class="data-item"><i class="fa-solid fa-hashtag"></i> Discord Channel IDs</div>
-        <div class="data-item"><i class="fa-solid fa-face-smile"></i> Emoji &amp; sticker data</div>
-        <div class="data-item"><i class="fa-solid fa-coins"></i> Economy data (coins, bank, streaks)</div>
-        <div class="data-item"><i class="fa-solid fa-clock-rotate-left"></i> AFK status &amp; reason</div>
-        <div class="data-item"><i class="fa-solid fa-star"></i> Ratings given and received</div>
-        <div class="data-item"><i class="fa-solid fa-trophy"></i> Leaderboard statistics</div>
-        <div class="data-item"><i class="fa-solid fa-key"></i> Membership activation status</div>
-        <div class="data-item"><i class="fa-solid fa-shield"></i> Temporary security logs</div>
-      </div>
-      <div class="highlight-box" id="hb1">
-        <strong>Note:</strong> We do not collect message content, passwords, email addresses, or any personal information beyond what Discord provides through its public API.
-      </div>
-    </div>
-
-    <div class="section-card" id="sec-2">
-      <h2><i class="fa-solid fa-sliders"></i> <span id="h2">How We Use Information</span></h2>
-      <ul id="list2">
-        <li>Power economy features: balance, daily rewards, work, robbing, gambling, leaderboards</li>
-        <li>Manage AFK status and automatic nickname handling across servers</li>
-        <li>Run and resolve giveaways fairly and transparently</li>
-        <li>Validate and manage Membership and Server Premium subscriptions</li>
-        <li>Display user profile information via <strong style="color:var(--silver)">/user</strong> and <strong style="color:var(--silver)">/rate</strong></li>
-        <li>Enforce rate limits and prevent abuse of commands</li>
-        <li>Generate internal logs for debugging and security purposes</li>
-        <li>Respond to AFK mentions and notify users accordingly</li>
-      </ul>
-    </div>
-
-    <div class="section-card" id="sec-3">
-      <h2><i class="fa-solid fa-database"></i> <span id="h3">Data Storage & Security</span></h2>
-      <p id="p3a">All data is stored on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.</p>
-      <p id="p3b" style="margin-top:8px;">Economy data, membership records, and leaderboard data are retained for the duration of the bot's operation. Temporary security logs are purged periodically. AFK data is automatically cleared when the user sends a message.</p>
-
-    </div>
-
-    <div class="section-card" id="sec-4">
-      <h2><i class="fa-solid fa-shield-halved"></i> <span id="h4">Data Sharing</span></h2>
-      <p id="p4">We do not sell, rent, or share your data with third parties for commercial purposes. Your data may only be disclosed if required by applicable law or in response to a valid legal request. Lunar Team will not voluntarily provide user data to any external entity outside of legal obligations.</p>
-    </div>
-
-    <div class="section-card" id="sec-5">
-      <h2><i class="fa-solid fa-link"></i> <span id="h5">Third-Party Services</span></h2>
-      <p id="p5">Mythx operates exclusively on Discord's platform. By using Mythx, you also agree to Discord's <a href="https://discord.com/terms" target="_blank">Terms of Service</a> and <a href="https://discord.com/privacy" target="_blank">Privacy Policy</a>. Mythx does not integrate with any analytics, advertising, or third-party tracking services. No data is sent to external APIs beyond Discord's own infrastructure.</p>
-    </div>
-
-    <div class="section-card" id="sec-6">
-      <h2><i class="fa-solid fa-child"></i> <span id="h6">Minors</span></h2>
-      <p id="p6">Mythx is intended for users aged 13 and above, in accordance with Discord's minimum age requirement. We do not knowingly collect data from users under 13 years of age. If you believe a minor's data has been collected, please contact us immediately through our support server.</p>
-    </div>
-
-    <div class="section-card" id="sec-7">
-      <h2><i class="fa-solid fa-trash-can"></i> <span id="h7">Data Removal</span></h2>
-      <p id="p7">You may request deletion of all data associated with your Discord User ID at any time. To submit a data removal request, join our support server and contact the team. We will process your request within a reasonable timeframe. Note that some data (such as leaderboard entries) may be retained in anonymized form.</p>
-    </div>
-
-    <div class="section-card" id="sec-8">
-      <h2><i class="fa-solid fa-comments"></i> <span id="h8">Support</span></h2>
-      <p id="supportLabel">For data requests, privacy concerns, or general help, join our support server:</p>
-      <a class="btn btn-primary" id="discordBtn" href="https://discord.gg/sfdRGj7Gqr" target="_blank">
-        <i class="fa-brands fa-discord"></i> <span id="btnTextSpan">Join Discord Server</span>
-      </a>
-    </div>
-
-    <div class="section-card" id="sec-9">
-      <h2><i class="fa-solid fa-scale-balanced"></i> <span id="h9">Legal Notice</span></h2>
-      <p id="legal1">Mythx and Lunar Team are protected under applicable copyright and intellectual property laws.</p>
-      <p id="legal2">Unauthorized copying, cloning, or impersonation of this bot or its branding is strictly prohibited.</p>
-      <p id="legal3">Violations may result in legal action. Mythx is not affiliated with Discord Inc.</p>
-    </div>
-  </div>
-
-</div>
-
+<script src="js/legal.js"></script>
 <script>
-  const translations = {
+const translations = {
     en: {
-      dir: "ltr",
-      currentLangLabel: "English",
-      subtitle: "Last Updated: June 14, 2026",
-      intro: "Mythx is a Discord bot developed by Lunar Team. This Privacy Policy explains what data we collect when you use Mythx, how it is used, how it is stored, and your rights regarding that data.",
-      nav1:"Data We Collect", nav2:"How We Use It", nav3:"Data Storage", nav4:"Data Sharing",
-      nav5:"Third-Party", nav6:"Minors", nav7:"Data Removal", nav8:"Support", nav9:"Legal",
-      h1:"Data We Collect", h2:"How We Use Information", h3:"Data Storage & Security",
-      h4:"Data Sharing", h5:"Third-Party Services", h6:"Minors",
-      h7:"Data Removal", h8:"Support", h9:"Legal Notice",
-      p1a: "Mythx collects the minimum data necessary to provide its features. The following data is stored:",
-      datagrid1: [
-        ["fa-user","Discord User IDs"],["fa-server","Discord Server IDs"],
-        ["fa-hashtag","Discord Channel IDs"],["fa-face-smile","Emoji & sticker data"],
-        ["fa-coins","Economy data (coins, bank, streaks)"],["fa-clock-rotate-left","AFK status & reason"],
-        ["fa-star","Ratings given and received"],["fa-trophy","Leaderboard statistics"],
-        ["fa-key","Membership activation status"],["fa-shield","Temporary security logs"]
-      ],
-      hb1: "<strong>Note:</strong> We do not collect message content, passwords, email addresses, or any personal information beyond what Discord provides through its public API.",
-      list2: [
-        "Power economy features: balance, daily rewards, work, robbing, gambling, leaderboards",
-        "Manage AFK status and automatic nickname handling across servers",
-        "Run and resolve giveaways fairly and transparently",
-        "Validate and manage Membership and Server Premium subscriptions",
-        `Display user profile information via <strong style="color:var(--silver)">/user</strong> and <strong style="color:var(--silver)">/rate</strong>`,
-        "Enforce rate limits and prevent abuse of commands",
-        "Generate internal logs for debugging and security purposes",
-        "Respond to AFK mentions and notify users accordingly"
-      ],
-      p3a: "All data is stored on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.",
-      p3b: "Economy data, membership records, and leaderboard data are retained for the duration of the bot's operation. Temporary security logs are purged periodically. AFK data is automatically cleared when the user sends a message.",
-      p3c: "",
-      p4: `We do not sell, rent, or share your data with third parties for commercial purposes. Your data may only be disclosed if required by applicable law or in response to a valid legal request. Lunar Team will not voluntarily provide user data to any external entity outside of legal obligations.`,
-      p5: `Mythx operates exclusively on Discord's platform. By using Mythx, you also agree to Discord's <a href="https://discord.com/terms" target="_blank">Terms of Service</a> and <a href="https://discord.com/privacy" target="_blank">Privacy Policy</a>. Mythx does not integrate with any analytics, advertising, or third-party tracking services.`,
-      p6: "Mythx is intended for users aged 13 and above, in accordance with Discord's minimum age requirement. We do not knowingly collect data from users under 13 years of age. If you believe a minor's data has been collected, please contact us immediately.",
-      p7: "You may request deletion of all data associated with your Discord User ID at any time. To submit a data removal request, join our support server and contact the team. We will process your request within a reasonable timeframe.",
-      supportLabel: "For data requests, privacy concerns, or general help, join our support server:",
-      discordButtonText: "Join Discord Server",
-      legal1: "Mythx and Lunar Team are protected under applicable copyright and intellectual property laws.",
-      legal2: "Unauthorized copying, cloning, or impersonation of this bot or its branding is strictly prohibited.",
-      legal3: "Violations may result in legal action. Mythx is not affiliated with Discord Inc.",
-      footer: `© 2026 Mythx Bot. Developed and owned by <a class="footer-link" href="https://lunar-team.vercel.app/" target="_blank">Lunar Team</a>.`
+        dir: "ltr",
+        currentLangLabel: "English",
+        backLabel: "Back to Site",
+        subtitle: "Last Updated: June 14, 2025",
+        intro: "Mythx is a Discord bot developed by Lunar Team. This Privacy Policy explains what data we collect when you use Mythx, how it is used, how it is stored, and your rights regarding that data.",
+        nav1:"Data We Collect", nav2:"How We Use It", nav3:"Data Storage", nav4:"Data Sharing",
+        nav5:"Third-Party", nav6:"Minors", nav7:"Data Removal", nav8:"Support", nav9:"Legal",
+        h1:"Data We Collect", h2:"How We Use Information", h3:"Data Storage & Security",
+        h4:"Data Sharing", h5:"Third-Party Services", h6:"Minors",
+        h7:"Data Removal", h8:"Support", h9:"Legal Notice",
+        p1a: "Mythx collects the minimum data necessary to provide its features. The following data is stored:",
+        datagrid1: [
+            ["fa-user","Discord User IDs"],["fa-server","Discord Server IDs"],
+            ["fa-hashtag","Discord Channel IDs"],["fa-face-smile","Emoji & sticker data"],
+            ["fa-coins","Economy data (coins, bank, streaks)"],["fa-clock-rotate-left","AFK status & reason"],
+            ["fa-star","Ratings given and received"],["fa-trophy","Leaderboard statistics"],
+            ["fa-key","Membership activation status"],["fa-shield","Temporary security logs"]
+        ],
+        hb1: "<strong>Note:</strong> We do not collect message content, passwords, email addresses, or any personal information beyond what Discord provides through its public API.",
+        list2: [
+            "Power economy features: balance, daily rewards, work, robbing, gambling, leaderboards",
+            "Manage AFK status and automatic nickname handling across servers",
+            "Run and resolve giveaways fairly and transparently",
+            "Validate and manage Membership and Server Premium subscriptions",
+            `Display user profile information via <strong style="color:var(--text)">/user</strong> and <strong style="color:var(--text)">/rate</strong>`,
+            "Enforce rate limits and prevent abuse of commands",
+            "Generate internal logs for debugging and security purposes",
+            "Respond to AFK mentions and notify users accordingly"
+        ],
+        p3a: "All data is stored on our secure server infrastructure. We apply reasonable technical measures to protect stored data from unauthorized access.",
+        p3b: "Economy data, membership records, and leaderboard data are retained for the duration of the bot's operation. Temporary security logs are purged periodically. AFK data is automatically cleared when the user sends a message.",
+        p4: `We do not sell, rent, or share your data with third parties for commercial purposes. Your data may only be disclosed if required by applicable law or in response to a valid legal request. Lunar Team will not voluntarily provide user data to any external entity outside of legal obligations.`,
+        p5: `Mythx operates exclusively on Discord's platform. By using Mythx, you also agree to Discord's <a href="https://discord.com/terms" target="_blank" rel="noopener">Terms of Service</a> and <a href="https://discord.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. Mythx does not integrate with any analytics, advertising, or third-party tracking services.`,
+        p6: "Mythx is intended for users aged 13 and above, in accordance with Discord's minimum age requirement. We do not knowingly collect data from users under 13 years of age. If you believe a minor's data has been collected, please contact us immediately.",
+        p7: "You may request deletion of all data associated with your Discord User ID at any time. To submit a data removal request, join our support server and contact the team. We will process your request within a reasonable timeframe.",
+        supportLabel: "For data requests, privacy concerns, or general help, join our support server:",
+        discordButtonText: "Join Discord Server",
+        legal1: "Mythx and Lunar Team are protected under applicable copyright and intellectual property laws.",
+        legal2: "Unauthorized copying, cloning, or impersonation of this bot or its branding is strictly prohibited.",
+        legal3: "Violations may result in legal action. Mythx is not affiliated with Discord Inc.",
+        footer: `© 2025 Mythx Bot. Developed and owned by <a href="https://lunar-team.vercel.app/" target="_blank" rel="noopener">Lunar Team</a>.`
     },
     ar: {
-      dir: "rtl",
-      currentLangLabel: "العربية",
-      subtitle: "آخر تحديث: 14 يونيو 2026",
-      intro: "ميثكس هو بوت ديسكورد طوّرته فريق Lunar Team. توضّح سياسة الخصوصية هذه البيانات التي نجمعها عند استخدامك لـ Mythx، وكيفية استخدامها وتخزينها وحقوقك المتعلقة بها.",
-      nav1:"البيانات التي نجمعها", nav2:"كيف نستخدمها", nav3:"التخزين والأمان", nav4:"مشاركة البيانات",
-      nav5:"أطراف خارجية", nav6:"القاصرون", nav7:"حذف البيانات", nav8:"الدعم", nav9:"إشعار قانوني",
-      h1:"البيانات التي نجمعها", h2:"كيفية استخدام البيانات", h3:"تخزين البيانات والأمان",
-      h4:"مشاركة البيانات", h5:"خدمات الطرف الثالث", h6:"القاصرون",
-      h7:"حذف البيانات", h8:"الدعم الفني", h9:"إشعار قانوني",
-      p1a: "يجمع Mythx الحد الأدنى من البيانات اللازمة لتشغيل ميزاته. يتم تخزين البيانات التالية:",
-      datagrid1: [
-        ["fa-user","معرّفات مستخدمي ديسكورد"],["fa-server","معرّفات سيرفرات ديسكورد"],
-        ["fa-hashtag","معرّفات قنوات ديسكورد"],["fa-face-smile","بيانات الإيموجي والملصقات"],
-        ["fa-coins","بيانات الاقتصاد (عملات، بنك، سلاسل)"],["fa-clock-rotate-left","حالة AFK وسببها"],
-        ["fa-star","التقييمات المُعطاة والمستلمة"],["fa-trophy","إحصائيات المتصدرين"],
-        ["fa-key","حالة تفعيل العضوية"],["fa-shield","سجلات أمان مؤقتة"]
-      ],
-      hb1: "<strong>ملاحظة:</strong> لا نجمع محتوى الرسائل أو كلمات المرور أو عناوين البريد الإلكتروني أو أي معلومات شخصية خارج ما توفره واجهة برمجة ديسكورد العامة.",
-      list2: [
-        "تشغيل ميزات الاقتصاد: الرصيد، المكافآت اليومية، العمل، السرقة، المقامرة، المتصدرون",
-        "إدارة حالة AFK والتعامل التلقائي مع الأسماء المستعارة عبر السيرفرات",
-        "إجراء وحسم الهدايا والسحوبات بشكل عادل وشفاف",
-        "التحقق من صحة العضويات وبريميوم السيرفر وإدارتها",
-        `عرض معلومات الملف الشخصي عبر <strong style="color:var(--silver)">/user</strong> و<strong style="color:var(--silver)">/rate</strong>`,
-        "فرض حدود المعدل ومنع إساءة استخدام الأوامر",
-        "إنشاء سجلات داخلية لأغراض التصحيح والأمان",
-        "الاستجابة لذكر الأعضاء الذين في وضع AFK وإعلام المستخدمين"
-      ],
-      p3a: "يتم تخزين جميع البيانات على البنية التحتية الآمنة لخوادمنا. نطبق تدابير تقنية معقولة لحماية البيانات المخزنة من الوصول غير المصرح به.",
-      p3b: "يتم الاحتفاظ ببيانات الاقتصاد وسجلات العضوية والمتصدرين طوال فترة تشغيل البوت. يتم حذف سجلات الأمان المؤقتة بشكل دوري. يتم مسح بيانات AFK تلقائياً عند إرسال المستخدم لرسالة.",
-      p3c: "",
-      p4: `لا نبيع بياناتك أو نؤجرها أو نشاركها مع أطراف ثالثة لأغراض تجارية. لا يمكن الكشف عن بياناتك إلا إذا طُلب ذلك بموجب القانون المعمول به أو استجابةً لطلب قانوني صالح.`,
-      p5: `يعمل Mythx حصرياً على منصة ديسكورد. باستخدامك لـ Mythx، فإنك توافق أيضاً على <a href="https://discord.com/terms" target="_blank">شروط خدمة ديسكورد</a> و<a href="https://discord.com/privacy" target="_blank">سياسة الخصوصية الخاصة به</a>. لا يتكامل Mythx مع أي خدمات تحليلات أو إعلانات أو تتبع خارجية.`,
-      p6: "صُمّم Mythx للمستخدمين الذين تبلغ أعمارهم 13 عاماً فأكثر، وفقاً لمتطلبات الحد الأدنى للعمر في ديسكورد. لا نجمع بيانات المستخدمين دون سن 13 عن علم. إذا كنت تعتقد أنه تم جمع بيانات قاصر، يرجى التواصل معنا فوراً.",
-      p7: "يمكنك طلب حذف جميع البيانات المرتبطة بمعرّف مستخدم ديسكورد الخاص بك في أي وقت. للتقديم، انضم إلى سيرفر الدعم وتواصل مع الفريق. سنعالج طلبك خلال فترة زمنية معقولة.",
-      supportLabel: "لطلبات البيانات أو مخاوف الخصوصية أو المساعدة العامة، انضم إلى سيرفر الدعم:",
-      discordButtonText: "انضم إلى سيرفر ديسكورد",
-      legal1: "ميثكس وفريق Lunar Team محميان بالكامل بموجب قوانين حماية حقوق الطبع والنشر والملكية الفكرية.",
-      legal2: "يُمنع منعاً باتاً نسخ ميزات هذا البوت، أو استنساخه، أو انتحال هويته وعلامته التجارية.",
-      legal3: "أي انتهاك سيعرض صاحبه للملاحقة القانونية. Mythx غير تابع لشركة Discord Inc.",
-      footer: `© ٢٠٢٦ بوت ميثكس. تم تطويره وامتلاكه بواسطة <a class="footer-link" href="https://lunar-team.vercel.app/" target="_blank">Lunar Team</a>.`
+        dir: "rtl",
+        currentLangLabel: "العربية",
+        backLabel: "العودة للموقع",
+        subtitle: "آخر تحديث: 14 يونيو 2026",
+        intro: "ميثكس هو بوت ديسكورد طوّرته فريق Lunar Team. توضّح سياسة الخصوصية هذه البيانات التي نجمعها عند استخدامك لـ Mythx، وكيفية استخدامها وتخزينها وحقوقك المتعلقة بها.",
+        nav1:"البيانات التي نجمعها", nav2:"كيف نستخدمها", nav3:"التخزين والأمان", nav4:"مشاركة البيانات",
+        nav5:"أطراف خارجية", nav6:"القاصرون", nav7:"حذف البيانات", nav8:"الدعم", nav9:"إشعار قانوني",
+        h1:"البيانات التي نجمعها", h2:"كيفية استخدام البيانات", h3:"تخزين البيانات والأمان",
+        h4:"مشاركة البيانات", h5:"خدمات الطرف الثالث", h6:"القاصرون",
+        h7:"حذف البيانات", h8:"الدعم الفني", h9:"إشعار قانوني",
+        p1a: "يجمع Mythx الحد الأدنى من البيانات اللازمة لتشغيل ميزاته. يتم تخزين البيانات التالية:",
+        datagrid1: [
+            ["fa-user","معرّفات مستخدمي ديسكورد"],["fa-server","معرّفات سيرفرات ديسكورد"],
+            ["fa-hashtag","معرّفات قنوات ديسكورد"],["fa-face-smile","بيانات الإيموجي والملصقات"],
+            ["fa-coins","بيانات الاقتصاد (عملات، بنك، سلاسل)"],["fa-clock-rotate-left","حالة AFK وسببها"],
+            ["fa-star","التقييمات المُعطاة والمستلمة"],["fa-trophy","إحصائيات المتصدرين"],
+            ["fa-key","حالة تفعيل العضوية"],["fa-shield","سجلات أمان مؤقتة"]
+        ],
+        hb1: "<strong>ملاحظة:</strong> لا نجمع محتوى الرسائل أو كلمات المرور أو عناوين البريد الإلكتروني أو أي معلومات شخصية خارج ما توفره واجهة برمجة ديسكورد العامة.",
+        list2: [
+            "تشغيل ميزات الاقتصاد: الرصيد، المكافآت اليومية، العمل، السرقة، المقامرة، المتصدرون",
+            "إدارة حالة AFK والتعامل التلقائي مع الأسماء المستعارة عبر السيرفرات",
+            "إجراء وحسم الهدايا والسحوبات بشكل عادل وشفاف",
+            "التحقق من صحة العضويات وبريميوم السيرفر وإدارتها",
+            `عرض معلومات الملف الشخصي عبر <strong style="color:var(--text)">/user</strong> و<strong style="color:var(--text)">/rate</strong>`,
+            "فرض حدود المعدل ومنع إساءة استخدام الأوامر",
+            "إنشاء سجلات داخلية لأغراض التصحيح والأمان",
+            "الاستجابة لذكر الأعضاء الذين في وضع AFK وإعلام المستخدمين"
+        ],
+        p3a: "يتم تخزين جميع البيانات على البنية التحتية الآمنة لخوادمنا. نطبق تدابير تقنية معقولة لحماية البيانات المخزنة من الوصول غير المصرح به.",
+        p3b: "يتم الاحتفاظ ببيانات الاقتصاد وسجلات العضوية والمتصدرين طوال فترة تشغيل البوت. يتم حذف سجلات الأمان المؤقتة بشكل دوري. يتم مسح بيانات AFK تلقائياً عند إرسال المستخدم لرسالة.",
+        p4: `لا نبيع بياناتك أو نؤجرها أو نشاركها مع أطراف ثالثة لأغراض تجارية. لا يمكن الكشف عن بياناتك إلا إذا طُلب ذلك بموجب القانون المعمول به أو استجابةً لطلب قانوني صالح.`,
+        p5: `يعمل Mythx حصرياً على منصة ديسكورد. باستخدامك لـ Mythx، فإنك توافق أيضاً على <a href="https://discord.com/terms" target="_blank" rel="noopener">شروط خدمة ديسكورد</a> و<a href="https://discord.com/privacy" target="_blank" rel="noopener">سياسة الخصوصية الخاصة به</a>. لا يتكامل Mythx مع أي خدمات تحليلات أو إعلانات أو تتبع خارجية.`,
+        p6: "صُمّم Mythx للمستخدمين الذين تبلغ أعمارهم 13 عاماً فأكثر، وفقاً لمتطلبات الحد الأدنى للعمر في ديسكورد. لا نجمع بيانات المستخدمين دون سن 13 عن علم. إذا كنت تعتقد أنه تم جمع بيانات قاصر، يرجى التواصل معنا فوراً.",
+        p7: "يمكنك طلب حذف جميع البيانات المرتبطة بمعرّف مستخدم ديسكورد الخاص بك في أي وقت. للتقديم، انضم إلى سيرفر الدعم وتواصل مع الفريق. سنعالج طلبك خلال فترة زمنية معقولة.",
+        supportLabel: "لطلبات البيانات أو مخاوف الخصوصية أو المساعدة العامة، انضم إلى سيرفر الدعم:",
+        discordButtonText: "انضم إلى سيرفر ديسكورد",
+        legal1: "ميثكس وفريق Lunar Team محميان بالكامل بموجب قوانين حماية حقوق الطبع والنشر والملكية الفكرية.",
+        legal2: "يُمنع منعاً باتاً نسخ ميزات هذا البوت، أو استنساخه، أو انتحال هويته وعلامته التجارية.",
+        legal3: "أي انتهاك سيعرض صاحبه للملاحقة القانونية. Mythx غير تابع لشركة Discord Inc.",
+        footer: `© ٢٠٢٥ بوت ميثكس. تم تطويره وامتلاكه بواسطة <a href="https://lunar-team.vercel.app/" target="_blank" rel="noopener">Lunar Team</a>.`
     }
-  };
+};
 
-  function setLanguage(lang) {
+function setLanguage(lang) {
     const t = translations[lang];
     if (!t) return;
-    localStorage.setItem("lang", lang);
+    localStorage.setItem('lang', lang);
     document.documentElement.lang = lang;
-    document.body.style.direction = t.dir;
     document.documentElement.dir = t.dir;
 
     const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
     const setHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
 
-    setText("currentLangLabel", t.currentLangLabel);
-    setHTML("title", lang === 'en' ? 'Privacy Policy<span>.</span>' : 'سياسة الخصوصية<span>.</span>');
-    setText("subtitle", t.subtitle);
-    setText("intro", t.intro);
+    setText('currentLangLabel', t.currentLangLabel);
+    setText('backLabel', t.backLabel);
+    setHTML('title', (lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية') + '<span class="dot">.</span>');
+    setText('subtitle', t.subtitle);
+    setText('intro', t.intro);
 
     for (let i = 1; i <= 9; i++) {
-      setText(`nav${i}`, t[`nav${i}`]);
-      setText(`h${i}`, t[`h${i}`]);
+        setText(`nav${i}`, t[`nav${i}`]);
+        setText(`h${i}`, t[`h${i}`]);
     }
 
-    setText("p1a", t.p1a);
-    setHTML("datagrid1", t.datagrid1.map(([icon, label]) =>
-      `<div class="data-item"><i class="fa-solid ${icon}"></i> ${label}</div>`
-    ).join(""));
-    setHTML("hb1", t.hb1);
-    setHTML("list2", t.list2.map(i => `<li>${i}</li>`).join(""));
-    setText("p3a", t.p3a);
-    setText("p3b", t.p3b);
-    setText("p3c", t.p3c);
-    setHTML("p4", t.p4);
-    setHTML("p5", t.p5);
-    setText("p6", t.p6);
-    setText("p7", t.p7);
-    setText("supportLabel", t.supportLabel);
-    setText("btnTextSpan", t.discordButtonText);
-    setText("legal1", t.legal1);
-    setText("legal2", t.legal2);
-    setText("legal3", t.legal3);
-    setHTML("footerText", t.footer);
+    setText('p1a', t.p1a);
+    setHTML('datagrid1', t.datagrid1.map(([icon, label]) =>
+        `<div class="data-item"><i class="fa-solid ${icon}"></i> ${label}</div>`
+    ).join(''));
+    setHTML('hb1', `<i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>${t.hb1}</span>`);
+    setHTML('list2', t.list2.map(i => `<li>${i}</li>`).join(''));
+    setText('p3a', t.p3a);
+    setText('p3b', t.p3b);
+    setHTML('p4', t.p4);
+    setHTML('p5', t.p5);
+    setText('p6', t.p6);
+    setText('p7', t.p7);
+    setText('supportLabel', t.supportLabel);
+    setText('btnTextSpan', t.discordButtonText);
+    setText('legal1', t.legal1);
+    setText('legal2', t.legal2);
+    setText('legal3', t.legal3);
+    setHTML('footerText', t.footer);
 
-    document.querySelectorAll(".lang-option").forEach(opt => {
-      opt.classList.toggle("active", opt.dataset.lang === lang);
+    document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
     });
+    protectIcons();
     closeDropdown();
-  }
+}
 
-  function toggleDropdown() {
-    const btn = document.getElementById("langBtn");
-    const menu = document.getElementById("langDropdown");
-    if (btn && menu) { btn.classList.toggle("open"); menu.classList.toggle("open"); }
-  }
-
-  function closeDropdown() {
-    const btn = document.getElementById("langBtn");
-    const menu = document.getElementById("langDropdown");
-    if (btn && menu) { btn.classList.remove("open"); menu.classList.remove("open"); }
-  }
-
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".lang-wrapper")) closeDropdown();
-  });
-
-  function scrollToCard(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const saved = localStorage.getItem("lang") || "en";
+document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('lang') || 'en';
     setLanguage(saved);
-  });
+});
 </script>
 
 </body>
